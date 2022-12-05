@@ -34,7 +34,7 @@ def main():
                         help='Extract changed parameters with timestamps. (csv)', default=False)
 
     parser.add_argument('-f', '--format', dest='format', action='store', type=str,
-                        help='csv|octave|qgc', default='csv')
+                        help='csv|octave|qgc|px4', default='csv')
 
     parser.add_argument('output_filename', metavar='params.txt',
                         type=argparse.FileType('w'), nargs='?',
@@ -148,4 +148,19 @@ def main():
                 param_type = 6
 
             output_file.write(str(param_type))
+            output_file.write('\n')
+
+    elif args.format == "px4":
+
+        for param_key in param_keys:
+            sys_id = 1
+            comp_id = 1
+            delimiter = ' '
+            param_value = params[param_key]
+
+            output_file.write("param set")
+            output_file.write(delimiter)
+            output_file.write(param_key)
+            output_file.write(delimiter)
+            output_file.write(str(param_value))
             output_file.write('\n')
