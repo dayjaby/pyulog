@@ -60,7 +60,7 @@ def show_info(ulog, verbose):
     for d in data_list_sorted:
         message_size = sum([ULog.get_field_size(f.type_str) for f in d.field_data])
         num_data_points = len(d.data['timestamp'])
-        name_id = "{:} ({:}, {:})".format(d.name, d.multi_id, message_size)
+        name_id = "{:}#{:} ({:}, {:})".format(d.name, d.message_add_logged.msg_id, d.multi_id, message_size)
         print(" {:<40} {:7d} {:10d}".format(name_id, num_data_points,
                                             message_size * num_data_points))
 

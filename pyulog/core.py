@@ -259,6 +259,10 @@ class ULog(object):
         if "mask" in kwargs:
             mask = kwargs["mask"]
 
+        timecorrection = 0
+        if "timecorrection" in kwargs:
+            timecorrection = kwargs["timecorrection"]
+
         datasets = []
         field_names = []
         for i, name in enumerate(names):
@@ -281,7 +285,7 @@ class ULog(object):
         for dataset in datasets:
             for j in reversed(range(shape[0])):
                 try:
-                    new[j,l:l+dataset.shape[1]-1] = dataset[np.max(np.where(dataset[:,0] <= new[j,0])), 1:]
+                    new[j,l:l+dataset.shape[1]-1] = dataset[np.max(np.where(dataset[:,0] - timecorrection <= new[j,0])), 1:]
                 except ValueError:
                     pass # no dataset with smaller timestamp found. keep nan values
             l += dataset.shape[1] - 1
@@ -296,6 +300,7 @@ class ULog(object):
             self.field_data = message_add_logged_obj.field_data
             self.timestamp_idx = message_add_logged_obj.timestamp_idx
             self.dtype = message_add_logged_obj.dtype
+            self.message_add_logged = message_add_logged_obj
 
             # get data as numpy.ndarray
             _np_array = np.frombuffer(message_add_logged_obj.buffer,
