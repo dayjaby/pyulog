@@ -1,0 +1,8119 @@
+CREATE TABLE Logswind (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+windspeed_north FLOAT(32)
+, 
+windspeed_east FLOAT(32)
+, 
+variance_north FLOAT(32)
+, 
+variance_east FLOAT(32)
+, 
+tas_innov FLOAT(32)
+, 
+tas_innov_var FLOAT(32)
+, 
+beta_innov FLOAT(32)
+, 
+beta_innov_var FLOAT(32)
+
+)
+CREATE TABLE Logstecs_status (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+altitude_sp FLOAT(32)
+, 
+altitude_filtered FLOAT(32)
+, 
+height_rate_setpoint FLOAT(32)
+, 
+height_rate FLOAT(32)
+, 
+equivalent_airspeed_sp FLOAT(32)
+, 
+true_airspeed_sp FLOAT(32)
+, 
+true_airspeed_filtered FLOAT(32)
+, 
+true_airspeed_derivative_sp FLOAT(32)
+, 
+true_airspeed_derivative FLOAT(32)
+, 
+true_airspeed_derivative_raw FLOAT(32)
+, 
+true_airspeed_innovation FLOAT(32)
+, 
+total_energy_error FLOAT(32)
+, 
+energy_distribution_error FLOAT(32)
+, 
+total_energy_rate_error FLOAT(32)
+, 
+energy_distribution_rate_error FLOAT(32)
+, 
+total_energy FLOAT(32)
+, 
+total_energy_rate FLOAT(32)
+, 
+total_energy_balance FLOAT(32)
+, 
+total_energy_balance_rate FLOAT(32)
+, 
+total_energy_sp FLOAT(32)
+, 
+total_energy_rate_sp FLOAT(32)
+, 
+total_energy_balance_sp FLOAT(32)
+, 
+total_energy_balance_rate_sp FLOAT(32)
+, 
+throttle_integ FLOAT(32)
+, 
+pitch_integ FLOAT(32)
+, 
+throttle_sp FLOAT(32)
+, 
+pitch_sp_rad FLOAT(32)
+, 
+mode SMALLSERIAL
+
+)
+CREATE TABLE Logsfw_virtual_attitude_setpoint (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+roll_body FLOAT(32)
+, 
+pitch_body FLOAT(32)
+, 
+yaw_body FLOAT(32)
+, 
+yaw_sp_move_rate FLOAT(32)
+, 
+q_d[0] FLOAT(32)
+, 
+q_d[1] FLOAT(32)
+, 
+q_d[2] FLOAT(32)
+, 
+q_d[3] FLOAT(32)
+, 
+thrust_body[0] FLOAT(32)
+, 
+thrust_body[1] FLOAT(32)
+, 
+thrust_body[2] FLOAT(32)
+, 
+roll_reset_integral BOOLEAN
+, 
+pitch_reset_integral BOOLEAN
+, 
+yaw_reset_integral BOOLEAN
+, 
+fw_control_yaw BOOLEAN
+, 
+apply_flaps SMALLSERIAL
+
+)
+CREATE TABLE Logsposition_controller_status (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+nav_roll FLOAT(32)
+, 
+nav_pitch FLOAT(32)
+, 
+nav_bearing FLOAT(32)
+, 
+target_bearing FLOAT(32)
+, 
+xtrack_error FLOAT(32)
+, 
+wp_dist FLOAT(32)
+, 
+acceptance_radius FLOAT(32)
+, 
+yaw_acceptance FLOAT(32)
+, 
+altitude_acceptance FLOAT(32)
+, 
+type SMALLSERIAL
+
+)
+CREATE TABLE Logsirlock_report (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+pos_x FLOAT(32)
+, 
+pos_y FLOAT(32)
+, 
+dist FLOAT(32)
+, 
+size_x FLOAT(32)
+, 
+size_y FLOAT(32)
+, 
+signature SMALLSERIAL
+
+)
+CREATE TABLE Logshover_thrust_estimate (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+hover_thrust FLOAT(32)
+, 
+hover_thrust_var FLOAT(32)
+, 
+accel_innov FLOAT(32)
+, 
+accel_innov_var FLOAT(32)
+, 
+accel_innov_test_ratio FLOAT(32)
+, 
+accel_noise_var FLOAT(32)
+, 
+valid BOOLEAN
+
+)
+CREATE TABLE Logsnavigator_mission_item (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+instance_count SERIAL
+, 
+latitude FLOAT(32)
+, 
+longitude FLOAT(32)
+, 
+time_inside FLOAT(32)
+, 
+acceptance_radius FLOAT(32)
+, 
+loiter_radius FLOAT(32)
+, 
+yaw FLOAT(32)
+, 
+altitude FLOAT(32)
+, 
+sequence_current SMALLSERIAL
+, 
+nav_cmd SMALLSERIAL
+, 
+frame SMALLSERIAL
+, 
+origin SMALLSERIAL
+, 
+loiter_exit_xtrack BOOLEAN
+, 
+force_heading BOOLEAN
+, 
+altitude_is_relative BOOLEAN
+, 
+autocontinue BOOLEAN
+, 
+vtol_back_transition BOOLEAN
+
+)
+CREATE TABLE Logsvehicle_constraints (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+speed_xy FLOAT(32)
+, 
+speed_up FLOAT(32)
+, 
+speed_down FLOAT(32)
+, 
+want_takeoff BOOLEAN
+
+)
+CREATE TABLE Logstrajectory_setpoint (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+x FLOAT(32)
+, 
+y FLOAT(32)
+, 
+z FLOAT(32)
+, 
+yaw FLOAT(32)
+, 
+yawspeed FLOAT(32)
+, 
+vx FLOAT(32)
+, 
+vy FLOAT(32)
+, 
+vz FLOAT(32)
+, 
+acceleration[0] FLOAT(32)
+, 
+acceleration[1] FLOAT(32)
+, 
+acceleration[2] FLOAT(32)
+, 
+jerk[0] FLOAT(32)
+, 
+jerk[1] FLOAT(32)
+, 
+jerk[2] FLOAT(32)
+, 
+thrust[0] FLOAT(32)
+, 
+thrust[1] FLOAT(32)
+, 
+thrust[2] FLOAT(32)
+
+)
+CREATE TABLE Logsrtl_flight_time (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+rtl_time_s FLOAT(32)
+, 
+rtl_limit_fraction FLOAT(32)
+
+)
+CREATE TABLE Logsmission_result (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+instance_count SERIAL
+, 
+seq_reached INTEGER
+, 
+seq_current SMALLSERIAL
+, 
+seq_total SMALLSERIAL
+, 
+item_changed_index SMALLSERIAL
+, 
+item_do_jump_remaining SMALLSERIAL
+, 
+valid BOOLEAN
+, 
+warning BOOLEAN
+, 
+finished BOOLEAN
+, 
+failure BOOLEAN
+, 
+stay_in_failsafe BOOLEAN
+, 
+flight_termination BOOLEAN
+, 
+item_do_jump_changed BOOLEAN
+, 
+execution_mode SMALLSERIAL
+
+)
+CREATE TABLE Logsvehicle_local_position_setpoint (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+x FLOAT(32)
+, 
+y FLOAT(32)
+, 
+z FLOAT(32)
+, 
+yaw FLOAT(32)
+, 
+yawspeed FLOAT(32)
+, 
+vx FLOAT(32)
+, 
+vy FLOAT(32)
+, 
+vz FLOAT(32)
+, 
+acceleration[0] FLOAT(32)
+, 
+acceleration[1] FLOAT(32)
+, 
+acceleration[2] FLOAT(32)
+, 
+jerk[0] FLOAT(32)
+, 
+jerk[1] FLOAT(32)
+, 
+jerk[2] FLOAT(32)
+, 
+thrust[0] FLOAT(32)
+, 
+thrust[1] FLOAT(32)
+, 
+thrust[2] FLOAT(32)
+
+)
+CREATE TABLE Logsvehicle_global_position (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+lat FLOAT(64)
+, 
+lon FLOAT(64)
+, 
+alt FLOAT(32)
+, 
+alt_ellipsoid FLOAT(32)
+, 
+delta_alt FLOAT(32)
+, 
+eph FLOAT(32)
+, 
+epv FLOAT(32)
+, 
+terrain_alt FLOAT(32)
+, 
+lat_lon_reset_counter SMALLSERIAL
+, 
+alt_reset_counter SMALLSERIAL
+, 
+terrain_alt_valid BOOLEAN
+, 
+dead_reckoning BOOLEAN
+
+)
+CREATE TABLE Logsmc_virtual_attitude_setpoint (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+roll_body FLOAT(32)
+, 
+pitch_body FLOAT(32)
+, 
+yaw_body FLOAT(32)
+, 
+yaw_sp_move_rate FLOAT(32)
+, 
+q_d[0] FLOAT(32)
+, 
+q_d[1] FLOAT(32)
+, 
+q_d[2] FLOAT(32)
+, 
+q_d[3] FLOAT(32)
+, 
+thrust_body[0] FLOAT(32)
+, 
+thrust_body[1] FLOAT(32)
+, 
+thrust_body[2] FLOAT(32)
+, 
+roll_reset_integral BOOLEAN
+, 
+pitch_reset_integral BOOLEAN
+, 
+yaw_reset_integral BOOLEAN
+, 
+fw_control_yaw BOOLEAN
+, 
+apply_flaps SMALLSERIAL
+
+)
+CREATE TABLE Logsrate_ctrl_status (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+rollspeed_integ FLOAT(32)
+, 
+pitchspeed_integ FLOAT(32)
+, 
+yawspeed_integ FLOAT(32)
+, 
+additional_integ1 FLOAT(32)
+
+)
+CREATE TABLE Logsvehicle_rates_setpoint (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+roll FLOAT(32)
+, 
+pitch FLOAT(32)
+, 
+yaw FLOAT(32)
+, 
+thrust_body[0] FLOAT(32)
+, 
+thrust_body[1] FLOAT(32)
+, 
+thrust_body[2] FLOAT(32)
+
+)
+CREATE TABLE Logsairspeed_wind (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+windspeed_north FLOAT(32)
+, 
+windspeed_east FLOAT(32)
+, 
+variance_north FLOAT(32)
+, 
+variance_east FLOAT(32)
+, 
+tas_innov FLOAT(32)
+, 
+tas_innov_var FLOAT(32)
+, 
+tas_scale FLOAT(32)
+, 
+beta_innov FLOAT(32)
+, 
+beta_innov_var FLOAT(32)
+, 
+source SMALLSERIAL
+
+)
+CREATE TABLE Logsairspeed_wind (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+windspeed_north FLOAT(32)
+, 
+windspeed_east FLOAT(32)
+, 
+variance_north FLOAT(32)
+, 
+variance_east FLOAT(32)
+, 
+tas_innov FLOAT(32)
+, 
+tas_innov_var FLOAT(32)
+, 
+tas_scale FLOAT(32)
+, 
+beta_innov FLOAT(32)
+, 
+beta_innov_var FLOAT(32)
+, 
+source SMALLSERIAL
+
+)
+CREATE TABLE Logsairspeed_validated (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+indicated_airspeed_m_s FLOAT(32)
+, 
+calibrated_airspeed_m_s FLOAT(32)
+, 
+true_airspeed_m_s FLOAT(32)
+, 
+calibrated_ground_minus_wind_m_s FLOAT(32)
+, 
+true_ground_minus_wind_m_s FLOAT(32)
+, 
+airspeed_sensor_measurement_valid BOOLEAN
+, 
+selected_airspeed_index SMALLINT
+
+)
+CREATE TABLE Logstelemetry_status (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+data_rate FLOAT(32)
+, 
+rate_multiplier FLOAT(32)
+, 
+tx_rate_avg FLOAT(32)
+, 
+tx_error_rate_avg FLOAT(32)
+, 
+tx_message_count SERIAL
+, 
+tx_buffer_overruns SERIAL
+, 
+rx_rate_avg FLOAT(32)
+, 
+rx_message_count SERIAL
+, 
+rx_message_lost_count SERIAL
+, 
+rx_buffer_overruns SERIAL
+, 
+rx_parse_errors SERIAL
+, 
+rx_packet_drop_count SERIAL
+, 
+rx_message_lost_rate FLOAT(32)
+, 
+type SMALLSERIAL
+, 
+mode SMALLSERIAL
+, 
+flow_control BOOLEAN
+, 
+forwarding BOOLEAN
+, 
+mavlink_v2 BOOLEAN
+, 
+ftp BOOLEAN
+, 
+streams SMALLSERIAL
+, 
+heartbeat_type_antenna_tracker BOOLEAN
+, 
+heartbeat_type_gcs BOOLEAN
+, 
+heartbeat_type_onboard_controller BOOLEAN
+, 
+heartbeat_type_gimbal BOOLEAN
+, 
+heartbeat_type_adsb BOOLEAN
+, 
+heartbeat_type_camera BOOLEAN
+, 
+heartbeat_component_telemetry_radio BOOLEAN
+, 
+heartbeat_component_log BOOLEAN
+, 
+heartbeat_component_osd BOOLEAN
+, 
+heartbeat_component_obstacle_avoidance BOOLEAN
+, 
+heartbeat_component_vio BOOLEAN
+, 
+heartbeat_component_pairing_manager BOOLEAN
+, 
+heartbeat_component_udp_bridge BOOLEAN
+, 
+heartbeat_component_uart_bridge BOOLEAN
+, 
+avoidance_system_healthy BOOLEAN
+
+)
+CREATE TABLE Logstelemetry_status (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+data_rate FLOAT(32)
+, 
+rate_multiplier FLOAT(32)
+, 
+tx_rate_avg FLOAT(32)
+, 
+tx_error_rate_avg FLOAT(32)
+, 
+tx_message_count SERIAL
+, 
+tx_buffer_overruns SERIAL
+, 
+rx_rate_avg FLOAT(32)
+, 
+rx_message_count SERIAL
+, 
+rx_message_lost_count SERIAL
+, 
+rx_buffer_overruns SERIAL
+, 
+rx_parse_errors SERIAL
+, 
+rx_packet_drop_count SERIAL
+, 
+rx_message_lost_rate FLOAT(32)
+, 
+type SMALLSERIAL
+, 
+mode SMALLSERIAL
+, 
+flow_control BOOLEAN
+, 
+forwarding BOOLEAN
+, 
+mavlink_v2 BOOLEAN
+, 
+ftp BOOLEAN
+, 
+streams SMALLSERIAL
+, 
+heartbeat_type_antenna_tracker BOOLEAN
+, 
+heartbeat_type_gcs BOOLEAN
+, 
+heartbeat_type_onboard_controller BOOLEAN
+, 
+heartbeat_type_gimbal BOOLEAN
+, 
+heartbeat_type_adsb BOOLEAN
+, 
+heartbeat_type_camera BOOLEAN
+, 
+heartbeat_component_telemetry_radio BOOLEAN
+, 
+heartbeat_component_log BOOLEAN
+, 
+heartbeat_component_osd BOOLEAN
+, 
+heartbeat_component_obstacle_avoidance BOOLEAN
+, 
+heartbeat_component_vio BOOLEAN
+, 
+heartbeat_component_pairing_manager BOOLEAN
+, 
+heartbeat_component_udp_bridge BOOLEAN
+, 
+heartbeat_component_uart_bridge BOOLEAN
+, 
+avoidance_system_healthy BOOLEAN
+
+)
+CREATE TABLE Logstelemetry_status (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+data_rate FLOAT(32)
+, 
+rate_multiplier FLOAT(32)
+, 
+tx_rate_avg FLOAT(32)
+, 
+tx_error_rate_avg FLOAT(32)
+, 
+tx_message_count SERIAL
+, 
+tx_buffer_overruns SERIAL
+, 
+rx_rate_avg FLOAT(32)
+, 
+rx_message_count SERIAL
+, 
+rx_message_lost_count SERIAL
+, 
+rx_buffer_overruns SERIAL
+, 
+rx_parse_errors SERIAL
+, 
+rx_packet_drop_count SERIAL
+, 
+rx_message_lost_rate FLOAT(32)
+, 
+type SMALLSERIAL
+, 
+mode SMALLSERIAL
+, 
+flow_control BOOLEAN
+, 
+forwarding BOOLEAN
+, 
+mavlink_v2 BOOLEAN
+, 
+ftp BOOLEAN
+, 
+streams SMALLSERIAL
+, 
+heartbeat_type_antenna_tracker BOOLEAN
+, 
+heartbeat_type_gcs BOOLEAN
+, 
+heartbeat_type_onboard_controller BOOLEAN
+, 
+heartbeat_type_gimbal BOOLEAN
+, 
+heartbeat_type_adsb BOOLEAN
+, 
+heartbeat_type_camera BOOLEAN
+, 
+heartbeat_component_telemetry_radio BOOLEAN
+, 
+heartbeat_component_log BOOLEAN
+, 
+heartbeat_component_osd BOOLEAN
+, 
+heartbeat_component_obstacle_avoidance BOOLEAN
+, 
+heartbeat_component_vio BOOLEAN
+, 
+heartbeat_component_pairing_manager BOOLEAN
+, 
+heartbeat_component_udp_bridge BOOLEAN
+, 
+heartbeat_component_uart_bridge BOOLEAN
+, 
+avoidance_system_healthy BOOLEAN
+
+)
+CREATE TABLE Logstelemetry_status (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+data_rate FLOAT(32)
+, 
+rate_multiplier FLOAT(32)
+, 
+tx_rate_avg FLOAT(32)
+, 
+tx_error_rate_avg FLOAT(32)
+, 
+tx_message_count SERIAL
+, 
+tx_buffer_overruns SERIAL
+, 
+rx_rate_avg FLOAT(32)
+, 
+rx_message_count SERIAL
+, 
+rx_message_lost_count SERIAL
+, 
+rx_buffer_overruns SERIAL
+, 
+rx_parse_errors SERIAL
+, 
+rx_packet_drop_count SERIAL
+, 
+rx_message_lost_rate FLOAT(32)
+, 
+type SMALLSERIAL
+, 
+mode SMALLSERIAL
+, 
+flow_control BOOLEAN
+, 
+forwarding BOOLEAN
+, 
+mavlink_v2 BOOLEAN
+, 
+ftp BOOLEAN
+, 
+streams SMALLSERIAL
+, 
+heartbeat_type_antenna_tracker BOOLEAN
+, 
+heartbeat_type_gcs BOOLEAN
+, 
+heartbeat_type_onboard_controller BOOLEAN
+, 
+heartbeat_type_gimbal BOOLEAN
+, 
+heartbeat_type_adsb BOOLEAN
+, 
+heartbeat_type_camera BOOLEAN
+, 
+heartbeat_component_telemetry_radio BOOLEAN
+, 
+heartbeat_component_log BOOLEAN
+, 
+heartbeat_component_osd BOOLEAN
+, 
+heartbeat_component_obstacle_avoidance BOOLEAN
+, 
+heartbeat_component_vio BOOLEAN
+, 
+heartbeat_component_pairing_manager BOOLEAN
+, 
+heartbeat_component_udp_bridge BOOLEAN
+, 
+heartbeat_component_uart_bridge BOOLEAN
+, 
+avoidance_system_healthy BOOLEAN
+
+)
+CREATE TABLE Logslogger_status (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+total_written_kb FLOAT(32)
+, 
+write_rate_kb_s FLOAT(32)
+, 
+dropouts SERIAL
+, 
+message_gaps SERIAL
+, 
+buffer_used_bytes SERIAL
+, 
+buffer_size_bytes SERIAL
+, 
+type SMALLSERIAL
+, 
+backend SMALLSERIAL
+, 
+num_messages SMALLSERIAL
+
+)
+CREATE TABLE Logstakeoff_status (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+tilt_limit FLOAT(32)
+, 
+takeoff_state SMALLSERIAL
+
+)
+CREATE TABLE Logshome_position (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+lat FLOAT(64)
+, 
+lon FLOAT(64)
+, 
+alt FLOAT(32)
+, 
+x FLOAT(32)
+, 
+y FLOAT(32)
+, 
+z FLOAT(32)
+, 
+yaw FLOAT(32)
+, 
+valid_alt BOOLEAN
+, 
+valid_hpos BOOLEAN
+, 
+valid_lpos BOOLEAN
+, 
+manual_home BOOLEAN
+
+)
+CREATE TABLE Logscpuload (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+load FLOAT(32)
+, 
+ram_usage FLOAT(32)
+
+)
+CREATE TABLE Logsactuator_controls_status_0 (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+control_power[0] FLOAT(32)
+, 
+control_power[1] FLOAT(32)
+, 
+control_power[2] FLOAT(32)
+, 
+control_power[3] FLOAT(32)
+
+)
+CREATE TABLE Logsactuator_controls_6 (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+control[0] FLOAT(32)
+, 
+control[1] FLOAT(32)
+, 
+control[2] FLOAT(32)
+, 
+control[3] FLOAT(32)
+, 
+control[4] FLOAT(32)
+, 
+control[5] FLOAT(32)
+, 
+control[6] FLOAT(32)
+, 
+control[7] FLOAT(32)
+
+)
+CREATE TABLE Logsactuator_controls_3 (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+control[0] FLOAT(32)
+, 
+control[1] FLOAT(32)
+, 
+control[2] FLOAT(32)
+, 
+control[3] FLOAT(32)
+, 
+control[4] FLOAT(32)
+, 
+control[5] FLOAT(32)
+, 
+control[6] FLOAT(32)
+, 
+control[7] FLOAT(32)
+
+)
+CREATE TABLE Logsbattery_status (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+voltage_v FLOAT(32)
+, 
+voltage_filtered_v FLOAT(32)
+, 
+current_a FLOAT(32)
+, 
+current_filtered_a FLOAT(32)
+, 
+current_average_a FLOAT(32)
+, 
+discharged_mah FLOAT(32)
+, 
+remaining FLOAT(32)
+, 
+scale FLOAT(32)
+, 
+temperature FLOAT(32)
+, 
+cell_count INTEGER
+, 
+voltage_cell_v[0] FLOAT(32)
+, 
+voltage_cell_v[1] FLOAT(32)
+, 
+voltage_cell_v[2] FLOAT(32)
+, 
+voltage_cell_v[3] FLOAT(32)
+, 
+voltage_cell_v[4] FLOAT(32)
+, 
+voltage_cell_v[5] FLOAT(32)
+, 
+voltage_cell_v[6] FLOAT(32)
+, 
+voltage_cell_v[7] FLOAT(32)
+, 
+voltage_cell_v[8] FLOAT(32)
+, 
+voltage_cell_v[9] FLOAT(32)
+, 
+voltage_cell_v[10] FLOAT(32)
+, 
+voltage_cell_v[11] FLOAT(32)
+, 
+voltage_cell_v[12] FLOAT(32)
+, 
+voltage_cell_v[13] FLOAT(32)
+, 
+max_cell_voltage_delta FLOAT(32)
+, 
+average_power FLOAT(32)
+, 
+available_energy FLOAT(32)
+, 
+remaining_capacity FLOAT(32)
+, 
+design_capacity FLOAT(32)
+, 
+nominal_voltage FLOAT(32)
+, 
+capacity SMALLSERIAL
+, 
+cycle_count SMALLSERIAL
+, 
+run_time_to_empty SMALLSERIAL
+, 
+average_time_to_empty SMALLSERIAL
+, 
+serial_number SMALLSERIAL
+, 
+manufacture_date SMALLSERIAL
+, 
+state_of_health SMALLSERIAL
+, 
+max_error SMALLSERIAL
+, 
+interface_error SMALLSERIAL
+, 
+average_time_to_full SMALLSERIAL
+, 
+over_discharge_count SMALLSERIAL
+, 
+connected BOOLEAN
+, 
+source SMALLSERIAL
+, 
+priority SMALLSERIAL
+, 
+id SMALLSERIAL
+, 
+is_powering_off BOOLEAN
+, 
+warning SMALLSERIAL
+
+)
+CREATE TABLE Logsestimator_event_flags (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+information_event_changes SERIAL
+, 
+warning_event_changes SERIAL
+, 
+gps_checks_passed BOOLEAN
+, 
+reset_vel_to_gps BOOLEAN
+, 
+reset_vel_to_flow BOOLEAN
+, 
+reset_vel_to_vision BOOLEAN
+, 
+reset_vel_to_zero BOOLEAN
+, 
+reset_pos_to_last_known BOOLEAN
+, 
+reset_pos_to_gps BOOLEAN
+, 
+reset_pos_to_vision BOOLEAN
+, 
+starting_gps_fusion BOOLEAN
+, 
+starting_vision_pos_fusion BOOLEAN
+, 
+starting_vision_vel_fusion BOOLEAN
+, 
+starting_vision_yaw_fusion BOOLEAN
+, 
+yaw_aligned_to_imu_gps BOOLEAN
+, 
+gps_quality_poor BOOLEAN
+, 
+gps_fusion_timout BOOLEAN
+, 
+gps_data_stopped BOOLEAN
+, 
+gps_data_stopped_using_alternate BOOLEAN
+, 
+height_sensor_timeout BOOLEAN
+, 
+stopping_navigation BOOLEAN
+, 
+invalid_accel_bias_cov_reset BOOLEAN
+, 
+bad_yaw_using_gps_course BOOLEAN
+, 
+stopping_mag_use BOOLEAN
+, 
+vision_data_stopped BOOLEAN
+, 
+emergency_yaw_reset_mag_stopped BOOLEAN
+
+)
+CREATE TABLE Logsestimator_event_flags (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+information_event_changes SERIAL
+, 
+warning_event_changes SERIAL
+, 
+gps_checks_passed BOOLEAN
+, 
+reset_vel_to_gps BOOLEAN
+, 
+reset_vel_to_flow BOOLEAN
+, 
+reset_vel_to_vision BOOLEAN
+, 
+reset_vel_to_zero BOOLEAN
+, 
+reset_pos_to_last_known BOOLEAN
+, 
+reset_pos_to_gps BOOLEAN
+, 
+reset_pos_to_vision BOOLEAN
+, 
+starting_gps_fusion BOOLEAN
+, 
+starting_vision_pos_fusion BOOLEAN
+, 
+starting_vision_vel_fusion BOOLEAN
+, 
+starting_vision_yaw_fusion BOOLEAN
+, 
+yaw_aligned_to_imu_gps BOOLEAN
+, 
+gps_quality_poor BOOLEAN
+, 
+gps_fusion_timout BOOLEAN
+, 
+gps_data_stopped BOOLEAN
+, 
+gps_data_stopped_using_alternate BOOLEAN
+, 
+height_sensor_timeout BOOLEAN
+, 
+stopping_navigation BOOLEAN
+, 
+invalid_accel_bias_cov_reset BOOLEAN
+, 
+bad_yaw_using_gps_course BOOLEAN
+, 
+stopping_mag_use BOOLEAN
+, 
+vision_data_stopped BOOLEAN
+, 
+emergency_yaw_reset_mag_stopped BOOLEAN
+
+)
+CREATE TABLE Logsestimator_event_flags (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+information_event_changes SERIAL
+, 
+warning_event_changes SERIAL
+, 
+gps_checks_passed BOOLEAN
+, 
+reset_vel_to_gps BOOLEAN
+, 
+reset_vel_to_flow BOOLEAN
+, 
+reset_vel_to_vision BOOLEAN
+, 
+reset_vel_to_zero BOOLEAN
+, 
+reset_pos_to_last_known BOOLEAN
+, 
+reset_pos_to_gps BOOLEAN
+, 
+reset_pos_to_vision BOOLEAN
+, 
+starting_gps_fusion BOOLEAN
+, 
+starting_vision_pos_fusion BOOLEAN
+, 
+starting_vision_vel_fusion BOOLEAN
+, 
+starting_vision_yaw_fusion BOOLEAN
+, 
+yaw_aligned_to_imu_gps BOOLEAN
+, 
+gps_quality_poor BOOLEAN
+, 
+gps_fusion_timout BOOLEAN
+, 
+gps_data_stopped BOOLEAN
+, 
+gps_data_stopped_using_alternate BOOLEAN
+, 
+height_sensor_timeout BOOLEAN
+, 
+stopping_navigation BOOLEAN
+, 
+invalid_accel_bias_cov_reset BOOLEAN
+, 
+bad_yaw_using_gps_course BOOLEAN
+, 
+stopping_mag_use BOOLEAN
+, 
+vision_data_stopped BOOLEAN
+, 
+emergency_yaw_reset_mag_stopped BOOLEAN
+
+)
+CREATE TABLE Logsestimator_event_flags (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+information_event_changes SERIAL
+, 
+warning_event_changes SERIAL
+, 
+gps_checks_passed BOOLEAN
+, 
+reset_vel_to_gps BOOLEAN
+, 
+reset_vel_to_flow BOOLEAN
+, 
+reset_vel_to_vision BOOLEAN
+, 
+reset_vel_to_zero BOOLEAN
+, 
+reset_pos_to_last_known BOOLEAN
+, 
+reset_pos_to_gps BOOLEAN
+, 
+reset_pos_to_vision BOOLEAN
+, 
+starting_gps_fusion BOOLEAN
+, 
+starting_vision_pos_fusion BOOLEAN
+, 
+starting_vision_vel_fusion BOOLEAN
+, 
+starting_vision_yaw_fusion BOOLEAN
+, 
+yaw_aligned_to_imu_gps BOOLEAN
+, 
+gps_quality_poor BOOLEAN
+, 
+gps_fusion_timout BOOLEAN
+, 
+gps_data_stopped BOOLEAN
+, 
+gps_data_stopped_using_alternate BOOLEAN
+, 
+height_sensor_timeout BOOLEAN
+, 
+stopping_navigation BOOLEAN
+, 
+invalid_accel_bias_cov_reset BOOLEAN
+, 
+bad_yaw_using_gps_course BOOLEAN
+, 
+stopping_mag_use BOOLEAN
+, 
+vision_data_stopped BOOLEAN
+, 
+emergency_yaw_reset_mag_stopped BOOLEAN
+
+)
+CREATE TABLE Logsestimator_event_flags (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+information_event_changes SERIAL
+, 
+warning_event_changes SERIAL
+, 
+gps_checks_passed BOOLEAN
+, 
+reset_vel_to_gps BOOLEAN
+, 
+reset_vel_to_flow BOOLEAN
+, 
+reset_vel_to_vision BOOLEAN
+, 
+reset_vel_to_zero BOOLEAN
+, 
+reset_pos_to_last_known BOOLEAN
+, 
+reset_pos_to_gps BOOLEAN
+, 
+reset_pos_to_vision BOOLEAN
+, 
+starting_gps_fusion BOOLEAN
+, 
+starting_vision_pos_fusion BOOLEAN
+, 
+starting_vision_vel_fusion BOOLEAN
+, 
+starting_vision_yaw_fusion BOOLEAN
+, 
+yaw_aligned_to_imu_gps BOOLEAN
+, 
+gps_quality_poor BOOLEAN
+, 
+gps_fusion_timout BOOLEAN
+, 
+gps_data_stopped BOOLEAN
+, 
+gps_data_stopped_using_alternate BOOLEAN
+, 
+height_sensor_timeout BOOLEAN
+, 
+stopping_navigation BOOLEAN
+, 
+invalid_accel_bias_cov_reset BOOLEAN
+, 
+bad_yaw_using_gps_course BOOLEAN
+, 
+stopping_mag_use BOOLEAN
+, 
+vision_data_stopped BOOLEAN
+, 
+emergency_yaw_reset_mag_stopped BOOLEAN
+
+)
+CREATE TABLE Logsestimator_event_flags (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+information_event_changes SERIAL
+, 
+warning_event_changes SERIAL
+, 
+gps_checks_passed BOOLEAN
+, 
+reset_vel_to_gps BOOLEAN
+, 
+reset_vel_to_flow BOOLEAN
+, 
+reset_vel_to_vision BOOLEAN
+, 
+reset_vel_to_zero BOOLEAN
+, 
+reset_pos_to_last_known BOOLEAN
+, 
+reset_pos_to_gps BOOLEAN
+, 
+reset_pos_to_vision BOOLEAN
+, 
+starting_gps_fusion BOOLEAN
+, 
+starting_vision_pos_fusion BOOLEAN
+, 
+starting_vision_vel_fusion BOOLEAN
+, 
+starting_vision_yaw_fusion BOOLEAN
+, 
+yaw_aligned_to_imu_gps BOOLEAN
+, 
+gps_quality_poor BOOLEAN
+, 
+gps_fusion_timout BOOLEAN
+, 
+gps_data_stopped BOOLEAN
+, 
+gps_data_stopped_using_alternate BOOLEAN
+, 
+height_sensor_timeout BOOLEAN
+, 
+stopping_navigation BOOLEAN
+, 
+invalid_accel_bias_cov_reset BOOLEAN
+, 
+bad_yaw_using_gps_course BOOLEAN
+, 
+stopping_mag_use BOOLEAN
+, 
+vision_data_stopped BOOLEAN
+, 
+emergency_yaw_reset_mag_stopped BOOLEAN
+
+)
+CREATE TABLE Logsestimator_selector_status (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+last_instance_change BIGSERIAL
+, 
+instance_changed_count SERIAL
+, 
+accel_device_id SERIAL
+, 
+baro_device_id SERIAL
+, 
+gyro_device_id SERIAL
+, 
+mag_device_id SERIAL
+, 
+combined_test_ratio[0] FLOAT(32)
+, 
+combined_test_ratio[1] FLOAT(32)
+, 
+combined_test_ratio[2] FLOAT(32)
+, 
+combined_test_ratio[3] FLOAT(32)
+, 
+combined_test_ratio[4] FLOAT(32)
+, 
+combined_test_ratio[5] FLOAT(32)
+, 
+combined_test_ratio[6] FLOAT(32)
+, 
+combined_test_ratio[7] FLOAT(32)
+, 
+combined_test_ratio[8] FLOAT(32)
+, 
+relative_test_ratio[0] FLOAT(32)
+, 
+relative_test_ratio[1] FLOAT(32)
+, 
+relative_test_ratio[2] FLOAT(32)
+, 
+relative_test_ratio[3] FLOAT(32)
+, 
+relative_test_ratio[4] FLOAT(32)
+, 
+relative_test_ratio[5] FLOAT(32)
+, 
+relative_test_ratio[6] FLOAT(32)
+, 
+relative_test_ratio[7] FLOAT(32)
+, 
+relative_test_ratio[8] FLOAT(32)
+, 
+accumulated_gyro_error[0] FLOAT(32)
+, 
+accumulated_gyro_error[1] FLOAT(32)
+, 
+accumulated_gyro_error[2] FLOAT(32)
+, 
+accumulated_gyro_error[3] FLOAT(32)
+, 
+accumulated_accel_error[0] FLOAT(32)
+, 
+accumulated_accel_error[1] FLOAT(32)
+, 
+accumulated_accel_error[2] FLOAT(32)
+, 
+accumulated_accel_error[3] FLOAT(32)
+, 
+primary_instance SMALLSERIAL
+, 
+instances_available SMALLSERIAL
+, 
+healthy[0] BOOLEAN
+, 
+healthy[1] BOOLEAN
+, 
+healthy[2] BOOLEAN
+, 
+healthy[3] BOOLEAN
+, 
+healthy[4] BOOLEAN
+, 
+healthy[5] BOOLEAN
+, 
+healthy[6] BOOLEAN
+, 
+healthy[7] BOOLEAN
+, 
+healthy[8] BOOLEAN
+, 
+gyro_fault_detected BOOLEAN
+, 
+accel_fault_detected BOOLEAN
+
+)
+CREATE TABLE Logsvehicle_land_detected (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+alt_max FLOAT(32)
+, 
+freefall BOOLEAN
+, 
+ground_contact BOOLEAN
+, 
+maybe_landed BOOLEAN
+, 
+landed BOOLEAN
+, 
+in_ground_effect BOOLEAN
+, 
+in_descend BOOLEAN
+, 
+has_low_throttle BOOLEAN
+, 
+vertical_movement BOOLEAN
+, 
+horizontal_movement BOOLEAN
+, 
+close_to_ground_or_skipped_check BOOLEAN
+
+)
+CREATE TABLE Logsekf2_timestamps (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+airspeed_timestamp_rel SMALLINT
+, 
+distance_sensor_timestamp_rel SMALLINT
+, 
+optical_flow_timestamp_rel SMALLINT
+, 
+vehicle_air_data_timestamp_rel SMALLINT
+, 
+vehicle_magnetometer_timestamp_rel SMALLINT
+, 
+visual_odometry_timestamp_rel SMALLINT
+
+)
+CREATE TABLE Logsvehicle_local_position_groundtruth (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+ref_timestamp BIGSERIAL
+, 
+ref_lat FLOAT(64)
+, 
+ref_lon FLOAT(64)
+, 
+x FLOAT(32)
+, 
+y FLOAT(32)
+, 
+z FLOAT(32)
+, 
+delta_xy[0] FLOAT(32)
+, 
+delta_xy[1] FLOAT(32)
+, 
+delta_z FLOAT(32)
+, 
+vx FLOAT(32)
+, 
+vy FLOAT(32)
+, 
+vz FLOAT(32)
+, 
+z_deriv FLOAT(32)
+, 
+delta_vxy[0] FLOAT(32)
+, 
+delta_vxy[1] FLOAT(32)
+, 
+delta_vz FLOAT(32)
+, 
+ax FLOAT(32)
+, 
+ay FLOAT(32)
+, 
+az FLOAT(32)
+, 
+heading FLOAT(32)
+, 
+delta_heading FLOAT(32)
+, 
+ref_alt FLOAT(32)
+, 
+dist_bottom FLOAT(32)
+, 
+eph FLOAT(32)
+, 
+epv FLOAT(32)
+, 
+evh FLOAT(32)
+, 
+evv FLOAT(32)
+, 
+vxy_max FLOAT(32)
+, 
+vz_max FLOAT(32)
+, 
+hagl_min FLOAT(32)
+, 
+hagl_max FLOAT(32)
+, 
+xy_valid BOOLEAN
+, 
+z_valid BOOLEAN
+, 
+v_xy_valid BOOLEAN
+, 
+v_z_valid BOOLEAN
+, 
+xy_reset_counter SMALLSERIAL
+, 
+z_reset_counter SMALLSERIAL
+, 
+vxy_reset_counter SMALLSERIAL
+, 
+vz_reset_counter SMALLSERIAL
+, 
+heading_reset_counter SMALLSERIAL
+, 
+xy_global BOOLEAN
+, 
+z_global BOOLEAN
+, 
+dist_bottom_valid BOOLEAN
+, 
+dist_bottom_sensor_bitfield SMALLSERIAL
+
+)
+CREATE TABLE Logsvehicle_global_position_groundtruth (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+lat FLOAT(64)
+, 
+lon FLOAT(64)
+, 
+alt FLOAT(32)
+, 
+alt_ellipsoid FLOAT(32)
+, 
+delta_alt FLOAT(32)
+, 
+eph FLOAT(32)
+, 
+epv FLOAT(32)
+, 
+terrain_alt FLOAT(32)
+, 
+lat_lon_reset_counter SMALLSERIAL
+, 
+alt_reset_counter SMALLSERIAL
+, 
+terrain_alt_valid BOOLEAN
+, 
+dead_reckoning BOOLEAN
+
+)
+CREATE TABLE Logsvehicle_attitude_groundtruth (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+q[0] FLOAT(32)
+, 
+q[1] FLOAT(32)
+, 
+q[2] FLOAT(32)
+, 
+q[3] FLOAT(32)
+, 
+delta_q_reset[0] FLOAT(32)
+, 
+delta_q_reset[1] FLOAT(32)
+, 
+delta_q_reset[2] FLOAT(32)
+, 
+delta_q_reset[3] FLOAT(32)
+, 
+quat_reset_counter SMALLSERIAL
+
+)
+CREATE TABLE Logsactuator_controls_virtual_mc (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+control[0] FLOAT(32)
+, 
+control[1] FLOAT(32)
+, 
+control[2] FLOAT(32)
+, 
+control[3] FLOAT(32)
+, 
+control[4] FLOAT(32)
+, 
+control[5] FLOAT(32)
+, 
+control[6] FLOAT(32)
+, 
+control[7] FLOAT(32)
+
+)
+CREATE TABLE Logsactuator_controls_virtual_fw (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+control[0] FLOAT(32)
+, 
+control[1] FLOAT(32)
+, 
+control[2] FLOAT(32)
+, 
+control[3] FLOAT(32)
+, 
+control[4] FLOAT(32)
+, 
+control[5] FLOAT(32)
+, 
+control[6] FLOAT(32)
+, 
+control[7] FLOAT(32)
+
+)
+CREATE TABLE Logsvehicle_magnetometer (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+device_id SERIAL
+, 
+magnetometer_ga[0] FLOAT(32)
+, 
+magnetometer_ga[1] FLOAT(32)
+, 
+magnetometer_ga[2] FLOAT(32)
+, 
+calibration_count SMALLSERIAL
+
+)
+CREATE TABLE Logsvehicle_imu_status (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+accel_device_id SERIAL
+, 
+gyro_device_id SERIAL
+, 
+accel_clipping[0] SERIAL
+, 
+accel_clipping[1] SERIAL
+, 
+accel_clipping[2] SERIAL
+, 
+accel_error_count SERIAL
+, 
+gyro_error_count SERIAL
+, 
+accel_rate_hz FLOAT(32)
+, 
+gyro_rate_hz FLOAT(32)
+, 
+accel_raw_rate_hz FLOAT(32)
+, 
+gyro_raw_rate_hz FLOAT(32)
+, 
+accel_vibration_metric FLOAT(32)
+, 
+gyro_vibration_metric FLOAT(32)
+, 
+gyro_coning_vibration FLOAT(32)
+, 
+mean_accel[0] FLOAT(32)
+, 
+mean_accel[1] FLOAT(32)
+, 
+mean_accel[2] FLOAT(32)
+, 
+mean_gyro[0] FLOAT(32)
+, 
+mean_gyro[1] FLOAT(32)
+, 
+mean_gyro[2] FLOAT(32)
+, 
+temperature_accel FLOAT(32)
+, 
+temperature_gyro FLOAT(32)
+
+)
+CREATE TABLE Logsvehicle_imu_status (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+accel_device_id SERIAL
+, 
+gyro_device_id SERIAL
+, 
+accel_clipping[0] SERIAL
+, 
+accel_clipping[1] SERIAL
+, 
+accel_clipping[2] SERIAL
+, 
+accel_error_count SERIAL
+, 
+gyro_error_count SERIAL
+, 
+accel_rate_hz FLOAT(32)
+, 
+gyro_rate_hz FLOAT(32)
+, 
+accel_raw_rate_hz FLOAT(32)
+, 
+gyro_raw_rate_hz FLOAT(32)
+, 
+accel_vibration_metric FLOAT(32)
+, 
+gyro_vibration_metric FLOAT(32)
+, 
+gyro_coning_vibration FLOAT(32)
+, 
+mean_accel[0] FLOAT(32)
+, 
+mean_accel[1] FLOAT(32)
+, 
+mean_accel[2] FLOAT(32)
+, 
+mean_gyro[0] FLOAT(32)
+, 
+mean_gyro[1] FLOAT(32)
+, 
+mean_gyro[2] FLOAT(32)
+, 
+temperature_accel FLOAT(32)
+, 
+temperature_gyro FLOAT(32)
+
+)
+CREATE TABLE Logsvehicle_imu_status (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+accel_device_id SERIAL
+, 
+gyro_device_id SERIAL
+, 
+accel_clipping[0] SERIAL
+, 
+accel_clipping[1] SERIAL
+, 
+accel_clipping[2] SERIAL
+, 
+accel_error_count SERIAL
+, 
+gyro_error_count SERIAL
+, 
+accel_rate_hz FLOAT(32)
+, 
+gyro_rate_hz FLOAT(32)
+, 
+accel_raw_rate_hz FLOAT(32)
+, 
+gyro_raw_rate_hz FLOAT(32)
+, 
+accel_vibration_metric FLOAT(32)
+, 
+gyro_vibration_metric FLOAT(32)
+, 
+gyro_coning_vibration FLOAT(32)
+, 
+mean_accel[0] FLOAT(32)
+, 
+mean_accel[1] FLOAT(32)
+, 
+mean_accel[2] FLOAT(32)
+, 
+mean_gyro[0] FLOAT(32)
+, 
+mean_gyro[1] FLOAT(32)
+, 
+mean_gyro[2] FLOAT(32)
+, 
+temperature_accel FLOAT(32)
+, 
+temperature_gyro FLOAT(32)
+
+)
+CREATE TABLE Logsvehicle_imu (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+accel_device_id SERIAL
+, 
+gyro_device_id SERIAL
+, 
+delta_angle[0] FLOAT(32)
+, 
+delta_angle[1] FLOAT(32)
+, 
+delta_angle[2] FLOAT(32)
+, 
+delta_velocity[0] FLOAT(32)
+, 
+delta_velocity[1] FLOAT(32)
+, 
+delta_velocity[2] FLOAT(32)
+, 
+delta_angle_dt SMALLSERIAL
+, 
+delta_velocity_dt SMALLSERIAL
+, 
+delta_velocity_clipping SMALLSERIAL
+, 
+calibration_count SMALLSERIAL
+
+)
+CREATE TABLE Logsvehicle_imu (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+accel_device_id SERIAL
+, 
+gyro_device_id SERIAL
+, 
+delta_angle[0] FLOAT(32)
+, 
+delta_angle[1] FLOAT(32)
+, 
+delta_angle[2] FLOAT(32)
+, 
+delta_velocity[0] FLOAT(32)
+, 
+delta_velocity[1] FLOAT(32)
+, 
+delta_velocity[2] FLOAT(32)
+, 
+delta_angle_dt SMALLSERIAL
+, 
+delta_velocity_dt SMALLSERIAL
+, 
+delta_velocity_clipping SMALLSERIAL
+, 
+calibration_count SMALLSERIAL
+
+)
+CREATE TABLE Logsvehicle_imu (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+accel_device_id SERIAL
+, 
+gyro_device_id SERIAL
+, 
+delta_angle[0] FLOAT(32)
+, 
+delta_angle[1] FLOAT(32)
+, 
+delta_angle[2] FLOAT(32)
+, 
+delta_velocity[0] FLOAT(32)
+, 
+delta_velocity[1] FLOAT(32)
+, 
+delta_velocity[2] FLOAT(32)
+, 
+delta_angle_dt SMALLSERIAL
+, 
+delta_velocity_dt SMALLSERIAL
+, 
+delta_velocity_clipping SMALLSERIAL
+, 
+calibration_count SMALLSERIAL
+
+)
+CREATE TABLE Logssensor_mag (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+device_id SERIAL
+, 
+x FLOAT(32)
+, 
+y FLOAT(32)
+, 
+z FLOAT(32)
+, 
+temperature FLOAT(32)
+, 
+error_count SERIAL
+, 
+is_external BOOLEAN
+
+)
+CREATE TABLE Logssensor_mag (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+device_id SERIAL
+, 
+x FLOAT(32)
+, 
+y FLOAT(32)
+, 
+z FLOAT(32)
+, 
+temperature FLOAT(32)
+, 
+error_count SERIAL
+, 
+is_external BOOLEAN
+
+)
+CREATE TABLE Logssensor_gyro (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+device_id SERIAL
+, 
+x FLOAT(32)
+, 
+y FLOAT(32)
+, 
+z FLOAT(32)
+, 
+temperature FLOAT(32)
+, 
+error_count SERIAL
+, 
+samples SMALLSERIAL
+
+)
+CREATE TABLE Logssensor_gyro (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+device_id SERIAL
+, 
+x FLOAT(32)
+, 
+y FLOAT(32)
+, 
+z FLOAT(32)
+, 
+temperature FLOAT(32)
+, 
+error_count SERIAL
+, 
+samples SMALLSERIAL
+
+)
+CREATE TABLE Logssensor_gyro (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+device_id SERIAL
+, 
+x FLOAT(32)
+, 
+y FLOAT(32)
+, 
+z FLOAT(32)
+, 
+temperature FLOAT(32)
+, 
+error_count SERIAL
+, 
+samples SMALLSERIAL
+
+)
+CREATE TABLE Logssensor_gps (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+time_utc_usec BIGSERIAL
+, 
+device_id SERIAL
+, 
+lat INTEGER
+, 
+lon INTEGER
+, 
+alt INTEGER
+, 
+alt_ellipsoid INTEGER
+, 
+s_variance_m_s FLOAT(32)
+, 
+c_variance_rad FLOAT(32)
+, 
+eph FLOAT(32)
+, 
+epv FLOAT(32)
+, 
+hdop FLOAT(32)
+, 
+vdop FLOAT(32)
+, 
+noise_per_ms INTEGER
+, 
+jamming_indicator INTEGER
+, 
+vel_m_s FLOAT(32)
+, 
+vel_n_m_s FLOAT(32)
+, 
+vel_e_m_s FLOAT(32)
+, 
+vel_d_m_s FLOAT(32)
+, 
+cog_rad FLOAT(32)
+, 
+timestamp_time_relative INTEGER
+, 
+heading FLOAT(32)
+, 
+heading_offset FLOAT(32)
+, 
+automatic_gain_control SMALLSERIAL
+, 
+fix_type SMALLSERIAL
+, 
+jamming_state SMALLSERIAL
+, 
+vel_ned_valid BOOLEAN
+, 
+satellites_used SMALLSERIAL
+
+)
+CREATE TABLE Logssensor_baro (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+device_id SERIAL
+, 
+error_count SERIAL
+, 
+pressure FLOAT(32)
+, 
+temperature FLOAT(32)
+
+)
+CREATE TABLE Logssensor_baro (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+device_id SERIAL
+, 
+error_count SERIAL
+, 
+pressure FLOAT(32)
+, 
+temperature FLOAT(32)
+
+)
+CREATE TABLE Logssensor_accel (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+device_id SERIAL
+, 
+x FLOAT(32)
+, 
+y FLOAT(32)
+, 
+z FLOAT(32)
+, 
+temperature FLOAT(32)
+, 
+error_count SERIAL
+, 
+clip_counter[0] SMALLSERIAL
+, 
+clip_counter[1] SMALLSERIAL
+, 
+clip_counter[2] SMALLSERIAL
+, 
+samples SMALLSERIAL
+
+)
+CREATE TABLE Logssensor_accel (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+device_id SERIAL
+, 
+x FLOAT(32)
+, 
+y FLOAT(32)
+, 
+z FLOAT(32)
+, 
+temperature FLOAT(32)
+, 
+error_count SERIAL
+, 
+clip_counter[0] SMALLSERIAL
+, 
+clip_counter[1] SMALLSERIAL
+, 
+clip_counter[2] SMALLSERIAL
+, 
+samples SMALLSERIAL
+
+)
+CREATE TABLE Logssensor_accel (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+device_id SERIAL
+, 
+x FLOAT(32)
+, 
+y FLOAT(32)
+, 
+z FLOAT(32)
+, 
+temperature FLOAT(32)
+, 
+error_count SERIAL
+, 
+clip_counter[0] SMALLSERIAL
+, 
+clip_counter[1] SMALLSERIAL
+, 
+clip_counter[2] SMALLSERIAL
+, 
+samples SMALLSERIAL
+
+)
+CREATE TABLE Logsdifferential_pressure (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+error_count BIGSERIAL
+, 
+differential_pressure_raw_pa FLOAT(32)
+, 
+differential_pressure_filtered_pa FLOAT(32)
+, 
+temperature FLOAT(32)
+, 
+device_id SERIAL
+
+)
+CREATE TABLE Logsyaw_estimator_status (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+yaw_composite FLOAT(32)
+, 
+yaw_variance FLOAT(32)
+, 
+yaw[0] FLOAT(32)
+, 
+yaw[1] FLOAT(32)
+, 
+yaw[2] FLOAT(32)
+, 
+yaw[3] FLOAT(32)
+, 
+yaw[4] FLOAT(32)
+, 
+innov_vn[0] FLOAT(32)
+, 
+innov_vn[1] FLOAT(32)
+, 
+innov_vn[2] FLOAT(32)
+, 
+innov_vn[3] FLOAT(32)
+, 
+innov_vn[4] FLOAT(32)
+, 
+innov_ve[0] FLOAT(32)
+, 
+innov_ve[1] FLOAT(32)
+, 
+innov_ve[2] FLOAT(32)
+, 
+innov_ve[3] FLOAT(32)
+, 
+innov_ve[4] FLOAT(32)
+, 
+weight[0] FLOAT(32)
+, 
+weight[1] FLOAT(32)
+, 
+weight[2] FLOAT(32)
+, 
+weight[3] FLOAT(32)
+, 
+weight[4] FLOAT(32)
+
+)
+CREATE TABLE Logsyaw_estimator_status (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+yaw_composite FLOAT(32)
+, 
+yaw_variance FLOAT(32)
+, 
+yaw[0] FLOAT(32)
+, 
+yaw[1] FLOAT(32)
+, 
+yaw[2] FLOAT(32)
+, 
+yaw[3] FLOAT(32)
+, 
+yaw[4] FLOAT(32)
+, 
+innov_vn[0] FLOAT(32)
+, 
+innov_vn[1] FLOAT(32)
+, 
+innov_vn[2] FLOAT(32)
+, 
+innov_vn[3] FLOAT(32)
+, 
+innov_vn[4] FLOAT(32)
+, 
+innov_ve[0] FLOAT(32)
+, 
+innov_ve[1] FLOAT(32)
+, 
+innov_ve[2] FLOAT(32)
+, 
+innov_ve[3] FLOAT(32)
+, 
+innov_ve[4] FLOAT(32)
+, 
+weight[0] FLOAT(32)
+, 
+weight[1] FLOAT(32)
+, 
+weight[2] FLOAT(32)
+, 
+weight[3] FLOAT(32)
+, 
+weight[4] FLOAT(32)
+
+)
+CREATE TABLE Logsyaw_estimator_status (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+yaw_composite FLOAT(32)
+, 
+yaw_variance FLOAT(32)
+, 
+yaw[0] FLOAT(32)
+, 
+yaw[1] FLOAT(32)
+, 
+yaw[2] FLOAT(32)
+, 
+yaw[3] FLOAT(32)
+, 
+yaw[4] FLOAT(32)
+, 
+innov_vn[0] FLOAT(32)
+, 
+innov_vn[1] FLOAT(32)
+, 
+innov_vn[2] FLOAT(32)
+, 
+innov_vn[3] FLOAT(32)
+, 
+innov_vn[4] FLOAT(32)
+, 
+innov_ve[0] FLOAT(32)
+, 
+innov_ve[1] FLOAT(32)
+, 
+innov_ve[2] FLOAT(32)
+, 
+innov_ve[3] FLOAT(32)
+, 
+innov_ve[4] FLOAT(32)
+, 
+weight[0] FLOAT(32)
+, 
+weight[1] FLOAT(32)
+, 
+weight[2] FLOAT(32)
+, 
+weight[3] FLOAT(32)
+, 
+weight[4] FLOAT(32)
+
+)
+CREATE TABLE Logsyaw_estimator_status (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+yaw_composite FLOAT(32)
+, 
+yaw_variance FLOAT(32)
+, 
+yaw[0] FLOAT(32)
+, 
+yaw[1] FLOAT(32)
+, 
+yaw[2] FLOAT(32)
+, 
+yaw[3] FLOAT(32)
+, 
+yaw[4] FLOAT(32)
+, 
+innov_vn[0] FLOAT(32)
+, 
+innov_vn[1] FLOAT(32)
+, 
+innov_vn[2] FLOAT(32)
+, 
+innov_vn[3] FLOAT(32)
+, 
+innov_vn[4] FLOAT(32)
+, 
+innov_ve[0] FLOAT(32)
+, 
+innov_ve[1] FLOAT(32)
+, 
+innov_ve[2] FLOAT(32)
+, 
+innov_ve[3] FLOAT(32)
+, 
+innov_ve[4] FLOAT(32)
+, 
+weight[0] FLOAT(32)
+, 
+weight[1] FLOAT(32)
+, 
+weight[2] FLOAT(32)
+, 
+weight[3] FLOAT(32)
+, 
+weight[4] FLOAT(32)
+
+)
+CREATE TABLE Logsyaw_estimator_status (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+yaw_composite FLOAT(32)
+, 
+yaw_variance FLOAT(32)
+, 
+yaw[0] FLOAT(32)
+, 
+yaw[1] FLOAT(32)
+, 
+yaw[2] FLOAT(32)
+, 
+yaw[3] FLOAT(32)
+, 
+yaw[4] FLOAT(32)
+, 
+innov_vn[0] FLOAT(32)
+, 
+innov_vn[1] FLOAT(32)
+, 
+innov_vn[2] FLOAT(32)
+, 
+innov_vn[3] FLOAT(32)
+, 
+innov_vn[4] FLOAT(32)
+, 
+innov_ve[0] FLOAT(32)
+, 
+innov_ve[1] FLOAT(32)
+, 
+innov_ve[2] FLOAT(32)
+, 
+innov_ve[3] FLOAT(32)
+, 
+innov_ve[4] FLOAT(32)
+, 
+weight[0] FLOAT(32)
+, 
+weight[1] FLOAT(32)
+, 
+weight[2] FLOAT(32)
+, 
+weight[3] FLOAT(32)
+, 
+weight[4] FLOAT(32)
+
+)
+CREATE TABLE Logsyaw_estimator_status (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+yaw_composite FLOAT(32)
+, 
+yaw_variance FLOAT(32)
+, 
+yaw[0] FLOAT(32)
+, 
+yaw[1] FLOAT(32)
+, 
+yaw[2] FLOAT(32)
+, 
+yaw[3] FLOAT(32)
+, 
+yaw[4] FLOAT(32)
+, 
+innov_vn[0] FLOAT(32)
+, 
+innov_vn[1] FLOAT(32)
+, 
+innov_vn[2] FLOAT(32)
+, 
+innov_vn[3] FLOAT(32)
+, 
+innov_vn[4] FLOAT(32)
+, 
+innov_ve[0] FLOAT(32)
+, 
+innov_ve[1] FLOAT(32)
+, 
+innov_ve[2] FLOAT(32)
+, 
+innov_ve[3] FLOAT(32)
+, 
+innov_ve[4] FLOAT(32)
+, 
+weight[0] FLOAT(32)
+, 
+weight[1] FLOAT(32)
+, 
+weight[2] FLOAT(32)
+, 
+weight[3] FLOAT(32)
+, 
+weight[4] FLOAT(32)
+
+)
+CREATE TABLE Logsestimator_status_flags (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+control_status_changes SERIAL
+, 
+fault_status_changes SERIAL
+, 
+innovation_fault_status_changes SERIAL
+, 
+cs_tilt_align BOOLEAN
+, 
+cs_yaw_align BOOLEAN
+, 
+cs_gps BOOLEAN
+, 
+cs_opt_flow BOOLEAN
+, 
+cs_mag_hdg BOOLEAN
+, 
+cs_mag_3d BOOLEAN
+, 
+cs_mag_dec BOOLEAN
+, 
+cs_in_air BOOLEAN
+, 
+cs_wind BOOLEAN
+, 
+cs_baro_hgt BOOLEAN
+, 
+cs_rng_hgt BOOLEAN
+, 
+cs_gps_hgt BOOLEAN
+, 
+cs_ev_pos BOOLEAN
+, 
+cs_ev_yaw BOOLEAN
+, 
+cs_ev_hgt BOOLEAN
+, 
+cs_fuse_beta BOOLEAN
+, 
+cs_mag_field_disturbed BOOLEAN
+, 
+cs_fixed_wing BOOLEAN
+, 
+cs_mag_fault BOOLEAN
+, 
+cs_fuse_aspd BOOLEAN
+, 
+cs_gnd_effect BOOLEAN
+, 
+cs_rng_stuck BOOLEAN
+, 
+cs_gps_yaw BOOLEAN
+, 
+cs_mag_aligned_in_flight BOOLEAN
+, 
+cs_ev_vel BOOLEAN
+, 
+cs_synthetic_mag_z BOOLEAN
+, 
+cs_vehicle_at_rest BOOLEAN
+, 
+fs_bad_mag_x BOOLEAN
+, 
+fs_bad_mag_y BOOLEAN
+, 
+fs_bad_mag_z BOOLEAN
+, 
+fs_bad_hdg BOOLEAN
+, 
+fs_bad_mag_decl BOOLEAN
+, 
+fs_bad_airspeed BOOLEAN
+, 
+fs_bad_sideslip BOOLEAN
+, 
+fs_bad_optflow_x BOOLEAN
+, 
+fs_bad_optflow_y BOOLEAN
+, 
+fs_bad_vel_n BOOLEAN
+, 
+fs_bad_vel_e BOOLEAN
+, 
+fs_bad_vel_d BOOLEAN
+, 
+fs_bad_pos_n BOOLEAN
+, 
+fs_bad_pos_e BOOLEAN
+, 
+fs_bad_pos_d BOOLEAN
+, 
+fs_bad_acc_bias BOOLEAN
+, 
+fs_bad_acc_vertical BOOLEAN
+, 
+fs_bad_acc_clipping BOOLEAN
+, 
+reject_hor_vel BOOLEAN
+, 
+reject_ver_vel BOOLEAN
+, 
+reject_hor_pos BOOLEAN
+, 
+reject_ver_pos BOOLEAN
+, 
+reject_mag_x BOOLEAN
+, 
+reject_mag_y BOOLEAN
+, 
+reject_mag_z BOOLEAN
+, 
+reject_yaw BOOLEAN
+, 
+reject_airspeed BOOLEAN
+, 
+reject_sideslip BOOLEAN
+, 
+reject_hagl BOOLEAN
+, 
+reject_optflow_x BOOLEAN
+, 
+reject_optflow_y BOOLEAN
+
+)
+CREATE TABLE Logsestimator_status_flags (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+control_status_changes SERIAL
+, 
+fault_status_changes SERIAL
+, 
+innovation_fault_status_changes SERIAL
+, 
+cs_tilt_align BOOLEAN
+, 
+cs_yaw_align BOOLEAN
+, 
+cs_gps BOOLEAN
+, 
+cs_opt_flow BOOLEAN
+, 
+cs_mag_hdg BOOLEAN
+, 
+cs_mag_3d BOOLEAN
+, 
+cs_mag_dec BOOLEAN
+, 
+cs_in_air BOOLEAN
+, 
+cs_wind BOOLEAN
+, 
+cs_baro_hgt BOOLEAN
+, 
+cs_rng_hgt BOOLEAN
+, 
+cs_gps_hgt BOOLEAN
+, 
+cs_ev_pos BOOLEAN
+, 
+cs_ev_yaw BOOLEAN
+, 
+cs_ev_hgt BOOLEAN
+, 
+cs_fuse_beta BOOLEAN
+, 
+cs_mag_field_disturbed BOOLEAN
+, 
+cs_fixed_wing BOOLEAN
+, 
+cs_mag_fault BOOLEAN
+, 
+cs_fuse_aspd BOOLEAN
+, 
+cs_gnd_effect BOOLEAN
+, 
+cs_rng_stuck BOOLEAN
+, 
+cs_gps_yaw BOOLEAN
+, 
+cs_mag_aligned_in_flight BOOLEAN
+, 
+cs_ev_vel BOOLEAN
+, 
+cs_synthetic_mag_z BOOLEAN
+, 
+cs_vehicle_at_rest BOOLEAN
+, 
+fs_bad_mag_x BOOLEAN
+, 
+fs_bad_mag_y BOOLEAN
+, 
+fs_bad_mag_z BOOLEAN
+, 
+fs_bad_hdg BOOLEAN
+, 
+fs_bad_mag_decl BOOLEAN
+, 
+fs_bad_airspeed BOOLEAN
+, 
+fs_bad_sideslip BOOLEAN
+, 
+fs_bad_optflow_x BOOLEAN
+, 
+fs_bad_optflow_y BOOLEAN
+, 
+fs_bad_vel_n BOOLEAN
+, 
+fs_bad_vel_e BOOLEAN
+, 
+fs_bad_vel_d BOOLEAN
+, 
+fs_bad_pos_n BOOLEAN
+, 
+fs_bad_pos_e BOOLEAN
+, 
+fs_bad_pos_d BOOLEAN
+, 
+fs_bad_acc_bias BOOLEAN
+, 
+fs_bad_acc_vertical BOOLEAN
+, 
+fs_bad_acc_clipping BOOLEAN
+, 
+reject_hor_vel BOOLEAN
+, 
+reject_ver_vel BOOLEAN
+, 
+reject_hor_pos BOOLEAN
+, 
+reject_ver_pos BOOLEAN
+, 
+reject_mag_x BOOLEAN
+, 
+reject_mag_y BOOLEAN
+, 
+reject_mag_z BOOLEAN
+, 
+reject_yaw BOOLEAN
+, 
+reject_airspeed BOOLEAN
+, 
+reject_sideslip BOOLEAN
+, 
+reject_hagl BOOLEAN
+, 
+reject_optflow_x BOOLEAN
+, 
+reject_optflow_y BOOLEAN
+
+)
+CREATE TABLE Logsestimator_status_flags (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+control_status_changes SERIAL
+, 
+fault_status_changes SERIAL
+, 
+innovation_fault_status_changes SERIAL
+, 
+cs_tilt_align BOOLEAN
+, 
+cs_yaw_align BOOLEAN
+, 
+cs_gps BOOLEAN
+, 
+cs_opt_flow BOOLEAN
+, 
+cs_mag_hdg BOOLEAN
+, 
+cs_mag_3d BOOLEAN
+, 
+cs_mag_dec BOOLEAN
+, 
+cs_in_air BOOLEAN
+, 
+cs_wind BOOLEAN
+, 
+cs_baro_hgt BOOLEAN
+, 
+cs_rng_hgt BOOLEAN
+, 
+cs_gps_hgt BOOLEAN
+, 
+cs_ev_pos BOOLEAN
+, 
+cs_ev_yaw BOOLEAN
+, 
+cs_ev_hgt BOOLEAN
+, 
+cs_fuse_beta BOOLEAN
+, 
+cs_mag_field_disturbed BOOLEAN
+, 
+cs_fixed_wing BOOLEAN
+, 
+cs_mag_fault BOOLEAN
+, 
+cs_fuse_aspd BOOLEAN
+, 
+cs_gnd_effect BOOLEAN
+, 
+cs_rng_stuck BOOLEAN
+, 
+cs_gps_yaw BOOLEAN
+, 
+cs_mag_aligned_in_flight BOOLEAN
+, 
+cs_ev_vel BOOLEAN
+, 
+cs_synthetic_mag_z BOOLEAN
+, 
+cs_vehicle_at_rest BOOLEAN
+, 
+fs_bad_mag_x BOOLEAN
+, 
+fs_bad_mag_y BOOLEAN
+, 
+fs_bad_mag_z BOOLEAN
+, 
+fs_bad_hdg BOOLEAN
+, 
+fs_bad_mag_decl BOOLEAN
+, 
+fs_bad_airspeed BOOLEAN
+, 
+fs_bad_sideslip BOOLEAN
+, 
+fs_bad_optflow_x BOOLEAN
+, 
+fs_bad_optflow_y BOOLEAN
+, 
+fs_bad_vel_n BOOLEAN
+, 
+fs_bad_vel_e BOOLEAN
+, 
+fs_bad_vel_d BOOLEAN
+, 
+fs_bad_pos_n BOOLEAN
+, 
+fs_bad_pos_e BOOLEAN
+, 
+fs_bad_pos_d BOOLEAN
+, 
+fs_bad_acc_bias BOOLEAN
+, 
+fs_bad_acc_vertical BOOLEAN
+, 
+fs_bad_acc_clipping BOOLEAN
+, 
+reject_hor_vel BOOLEAN
+, 
+reject_ver_vel BOOLEAN
+, 
+reject_hor_pos BOOLEAN
+, 
+reject_ver_pos BOOLEAN
+, 
+reject_mag_x BOOLEAN
+, 
+reject_mag_y BOOLEAN
+, 
+reject_mag_z BOOLEAN
+, 
+reject_yaw BOOLEAN
+, 
+reject_airspeed BOOLEAN
+, 
+reject_sideslip BOOLEAN
+, 
+reject_hagl BOOLEAN
+, 
+reject_optflow_x BOOLEAN
+, 
+reject_optflow_y BOOLEAN
+
+)
+CREATE TABLE Logsestimator_status_flags (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+control_status_changes SERIAL
+, 
+fault_status_changes SERIAL
+, 
+innovation_fault_status_changes SERIAL
+, 
+cs_tilt_align BOOLEAN
+, 
+cs_yaw_align BOOLEAN
+, 
+cs_gps BOOLEAN
+, 
+cs_opt_flow BOOLEAN
+, 
+cs_mag_hdg BOOLEAN
+, 
+cs_mag_3d BOOLEAN
+, 
+cs_mag_dec BOOLEAN
+, 
+cs_in_air BOOLEAN
+, 
+cs_wind BOOLEAN
+, 
+cs_baro_hgt BOOLEAN
+, 
+cs_rng_hgt BOOLEAN
+, 
+cs_gps_hgt BOOLEAN
+, 
+cs_ev_pos BOOLEAN
+, 
+cs_ev_yaw BOOLEAN
+, 
+cs_ev_hgt BOOLEAN
+, 
+cs_fuse_beta BOOLEAN
+, 
+cs_mag_field_disturbed BOOLEAN
+, 
+cs_fixed_wing BOOLEAN
+, 
+cs_mag_fault BOOLEAN
+, 
+cs_fuse_aspd BOOLEAN
+, 
+cs_gnd_effect BOOLEAN
+, 
+cs_rng_stuck BOOLEAN
+, 
+cs_gps_yaw BOOLEAN
+, 
+cs_mag_aligned_in_flight BOOLEAN
+, 
+cs_ev_vel BOOLEAN
+, 
+cs_synthetic_mag_z BOOLEAN
+, 
+cs_vehicle_at_rest BOOLEAN
+, 
+fs_bad_mag_x BOOLEAN
+, 
+fs_bad_mag_y BOOLEAN
+, 
+fs_bad_mag_z BOOLEAN
+, 
+fs_bad_hdg BOOLEAN
+, 
+fs_bad_mag_decl BOOLEAN
+, 
+fs_bad_airspeed BOOLEAN
+, 
+fs_bad_sideslip BOOLEAN
+, 
+fs_bad_optflow_x BOOLEAN
+, 
+fs_bad_optflow_y BOOLEAN
+, 
+fs_bad_vel_n BOOLEAN
+, 
+fs_bad_vel_e BOOLEAN
+, 
+fs_bad_vel_d BOOLEAN
+, 
+fs_bad_pos_n BOOLEAN
+, 
+fs_bad_pos_e BOOLEAN
+, 
+fs_bad_pos_d BOOLEAN
+, 
+fs_bad_acc_bias BOOLEAN
+, 
+fs_bad_acc_vertical BOOLEAN
+, 
+fs_bad_acc_clipping BOOLEAN
+, 
+reject_hor_vel BOOLEAN
+, 
+reject_ver_vel BOOLEAN
+, 
+reject_hor_pos BOOLEAN
+, 
+reject_ver_pos BOOLEAN
+, 
+reject_mag_x BOOLEAN
+, 
+reject_mag_y BOOLEAN
+, 
+reject_mag_z BOOLEAN
+, 
+reject_yaw BOOLEAN
+, 
+reject_airspeed BOOLEAN
+, 
+reject_sideslip BOOLEAN
+, 
+reject_hagl BOOLEAN
+, 
+reject_optflow_x BOOLEAN
+, 
+reject_optflow_y BOOLEAN
+
+)
+CREATE TABLE Logsestimator_status_flags (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+control_status_changes SERIAL
+, 
+fault_status_changes SERIAL
+, 
+innovation_fault_status_changes SERIAL
+, 
+cs_tilt_align BOOLEAN
+, 
+cs_yaw_align BOOLEAN
+, 
+cs_gps BOOLEAN
+, 
+cs_opt_flow BOOLEAN
+, 
+cs_mag_hdg BOOLEAN
+, 
+cs_mag_3d BOOLEAN
+, 
+cs_mag_dec BOOLEAN
+, 
+cs_in_air BOOLEAN
+, 
+cs_wind BOOLEAN
+, 
+cs_baro_hgt BOOLEAN
+, 
+cs_rng_hgt BOOLEAN
+, 
+cs_gps_hgt BOOLEAN
+, 
+cs_ev_pos BOOLEAN
+, 
+cs_ev_yaw BOOLEAN
+, 
+cs_ev_hgt BOOLEAN
+, 
+cs_fuse_beta BOOLEAN
+, 
+cs_mag_field_disturbed BOOLEAN
+, 
+cs_fixed_wing BOOLEAN
+, 
+cs_mag_fault BOOLEAN
+, 
+cs_fuse_aspd BOOLEAN
+, 
+cs_gnd_effect BOOLEAN
+, 
+cs_rng_stuck BOOLEAN
+, 
+cs_gps_yaw BOOLEAN
+, 
+cs_mag_aligned_in_flight BOOLEAN
+, 
+cs_ev_vel BOOLEAN
+, 
+cs_synthetic_mag_z BOOLEAN
+, 
+cs_vehicle_at_rest BOOLEAN
+, 
+fs_bad_mag_x BOOLEAN
+, 
+fs_bad_mag_y BOOLEAN
+, 
+fs_bad_mag_z BOOLEAN
+, 
+fs_bad_hdg BOOLEAN
+, 
+fs_bad_mag_decl BOOLEAN
+, 
+fs_bad_airspeed BOOLEAN
+, 
+fs_bad_sideslip BOOLEAN
+, 
+fs_bad_optflow_x BOOLEAN
+, 
+fs_bad_optflow_y BOOLEAN
+, 
+fs_bad_vel_n BOOLEAN
+, 
+fs_bad_vel_e BOOLEAN
+, 
+fs_bad_vel_d BOOLEAN
+, 
+fs_bad_pos_n BOOLEAN
+, 
+fs_bad_pos_e BOOLEAN
+, 
+fs_bad_pos_d BOOLEAN
+, 
+fs_bad_acc_bias BOOLEAN
+, 
+fs_bad_acc_vertical BOOLEAN
+, 
+fs_bad_acc_clipping BOOLEAN
+, 
+reject_hor_vel BOOLEAN
+, 
+reject_ver_vel BOOLEAN
+, 
+reject_hor_pos BOOLEAN
+, 
+reject_ver_pos BOOLEAN
+, 
+reject_mag_x BOOLEAN
+, 
+reject_mag_y BOOLEAN
+, 
+reject_mag_z BOOLEAN
+, 
+reject_yaw BOOLEAN
+, 
+reject_airspeed BOOLEAN
+, 
+reject_sideslip BOOLEAN
+, 
+reject_hagl BOOLEAN
+, 
+reject_optflow_x BOOLEAN
+, 
+reject_optflow_y BOOLEAN
+
+)
+CREATE TABLE Logsestimator_status_flags (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+control_status_changes SERIAL
+, 
+fault_status_changes SERIAL
+, 
+innovation_fault_status_changes SERIAL
+, 
+cs_tilt_align BOOLEAN
+, 
+cs_yaw_align BOOLEAN
+, 
+cs_gps BOOLEAN
+, 
+cs_opt_flow BOOLEAN
+, 
+cs_mag_hdg BOOLEAN
+, 
+cs_mag_3d BOOLEAN
+, 
+cs_mag_dec BOOLEAN
+, 
+cs_in_air BOOLEAN
+, 
+cs_wind BOOLEAN
+, 
+cs_baro_hgt BOOLEAN
+, 
+cs_rng_hgt BOOLEAN
+, 
+cs_gps_hgt BOOLEAN
+, 
+cs_ev_pos BOOLEAN
+, 
+cs_ev_yaw BOOLEAN
+, 
+cs_ev_hgt BOOLEAN
+, 
+cs_fuse_beta BOOLEAN
+, 
+cs_mag_field_disturbed BOOLEAN
+, 
+cs_fixed_wing BOOLEAN
+, 
+cs_mag_fault BOOLEAN
+, 
+cs_fuse_aspd BOOLEAN
+, 
+cs_gnd_effect BOOLEAN
+, 
+cs_rng_stuck BOOLEAN
+, 
+cs_gps_yaw BOOLEAN
+, 
+cs_mag_aligned_in_flight BOOLEAN
+, 
+cs_ev_vel BOOLEAN
+, 
+cs_synthetic_mag_z BOOLEAN
+, 
+cs_vehicle_at_rest BOOLEAN
+, 
+fs_bad_mag_x BOOLEAN
+, 
+fs_bad_mag_y BOOLEAN
+, 
+fs_bad_mag_z BOOLEAN
+, 
+fs_bad_hdg BOOLEAN
+, 
+fs_bad_mag_decl BOOLEAN
+, 
+fs_bad_airspeed BOOLEAN
+, 
+fs_bad_sideslip BOOLEAN
+, 
+fs_bad_optflow_x BOOLEAN
+, 
+fs_bad_optflow_y BOOLEAN
+, 
+fs_bad_vel_n BOOLEAN
+, 
+fs_bad_vel_e BOOLEAN
+, 
+fs_bad_vel_d BOOLEAN
+, 
+fs_bad_pos_n BOOLEAN
+, 
+fs_bad_pos_e BOOLEAN
+, 
+fs_bad_pos_d BOOLEAN
+, 
+fs_bad_acc_bias BOOLEAN
+, 
+fs_bad_acc_vertical BOOLEAN
+, 
+fs_bad_acc_clipping BOOLEAN
+, 
+reject_hor_vel BOOLEAN
+, 
+reject_ver_vel BOOLEAN
+, 
+reject_hor_pos BOOLEAN
+, 
+reject_ver_pos BOOLEAN
+, 
+reject_mag_x BOOLEAN
+, 
+reject_mag_y BOOLEAN
+, 
+reject_mag_z BOOLEAN
+, 
+reject_yaw BOOLEAN
+, 
+reject_airspeed BOOLEAN
+, 
+reject_sideslip BOOLEAN
+, 
+reject_hagl BOOLEAN
+, 
+reject_optflow_x BOOLEAN
+, 
+reject_optflow_y BOOLEAN
+
+)
+CREATE TABLE Logsestimator_status (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+vibe[0] FLOAT(32)
+, 
+vibe[1] FLOAT(32)
+, 
+vibe[2] FLOAT(32)
+, 
+output_tracking_error[0] FLOAT(32)
+, 
+output_tracking_error[1] FLOAT(32)
+, 
+output_tracking_error[2] FLOAT(32)
+, 
+control_mode_flags SERIAL
+, 
+filter_fault_flags SERIAL
+, 
+pos_horiz_accuracy FLOAT(32)
+, 
+pos_vert_accuracy FLOAT(32)
+, 
+mag_test_ratio FLOAT(32)
+, 
+vel_test_ratio FLOAT(32)
+, 
+pos_test_ratio FLOAT(32)
+, 
+hgt_test_ratio FLOAT(32)
+, 
+tas_test_ratio FLOAT(32)
+, 
+hagl_test_ratio FLOAT(32)
+, 
+beta_test_ratio FLOAT(32)
+, 
+time_slip FLOAT(32)
+, 
+accel_device_id SERIAL
+, 
+gyro_device_id SERIAL
+, 
+baro_device_id SERIAL
+, 
+mag_device_id SERIAL
+, 
+gps_check_fail_flags SMALLSERIAL
+, 
+innovation_check_flags SMALLSERIAL
+, 
+solution_status_flags SMALLSERIAL
+, 
+reset_count_vel_ne SMALLSERIAL
+, 
+reset_count_vel_d SMALLSERIAL
+, 
+reset_count_pos_ne SMALLSERIAL
+, 
+reset_count_pod_d SMALLSERIAL
+, 
+reset_count_quat SMALLSERIAL
+, 
+pre_flt_fail_innov_heading BOOLEAN
+, 
+pre_flt_fail_innov_vel_horiz BOOLEAN
+, 
+pre_flt_fail_innov_vel_vert BOOLEAN
+, 
+pre_flt_fail_innov_height BOOLEAN
+, 
+pre_flt_fail_mag_field_disturbed BOOLEAN
+, 
+health_flags SMALLSERIAL
+, 
+timeout_flags SMALLSERIAL
+
+)
+CREATE TABLE Logsestimator_status (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+vibe[0] FLOAT(32)
+, 
+vibe[1] FLOAT(32)
+, 
+vibe[2] FLOAT(32)
+, 
+output_tracking_error[0] FLOAT(32)
+, 
+output_tracking_error[1] FLOAT(32)
+, 
+output_tracking_error[2] FLOAT(32)
+, 
+control_mode_flags SERIAL
+, 
+filter_fault_flags SERIAL
+, 
+pos_horiz_accuracy FLOAT(32)
+, 
+pos_vert_accuracy FLOAT(32)
+, 
+mag_test_ratio FLOAT(32)
+, 
+vel_test_ratio FLOAT(32)
+, 
+pos_test_ratio FLOAT(32)
+, 
+hgt_test_ratio FLOAT(32)
+, 
+tas_test_ratio FLOAT(32)
+, 
+hagl_test_ratio FLOAT(32)
+, 
+beta_test_ratio FLOAT(32)
+, 
+time_slip FLOAT(32)
+, 
+accel_device_id SERIAL
+, 
+gyro_device_id SERIAL
+, 
+baro_device_id SERIAL
+, 
+mag_device_id SERIAL
+, 
+gps_check_fail_flags SMALLSERIAL
+, 
+innovation_check_flags SMALLSERIAL
+, 
+solution_status_flags SMALLSERIAL
+, 
+reset_count_vel_ne SMALLSERIAL
+, 
+reset_count_vel_d SMALLSERIAL
+, 
+reset_count_pos_ne SMALLSERIAL
+, 
+reset_count_pod_d SMALLSERIAL
+, 
+reset_count_quat SMALLSERIAL
+, 
+pre_flt_fail_innov_heading BOOLEAN
+, 
+pre_flt_fail_innov_vel_horiz BOOLEAN
+, 
+pre_flt_fail_innov_vel_vert BOOLEAN
+, 
+pre_flt_fail_innov_height BOOLEAN
+, 
+pre_flt_fail_mag_field_disturbed BOOLEAN
+, 
+health_flags SMALLSERIAL
+, 
+timeout_flags SMALLSERIAL
+
+)
+CREATE TABLE Logsestimator_status (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+vibe[0] FLOAT(32)
+, 
+vibe[1] FLOAT(32)
+, 
+vibe[2] FLOAT(32)
+, 
+output_tracking_error[0] FLOAT(32)
+, 
+output_tracking_error[1] FLOAT(32)
+, 
+output_tracking_error[2] FLOAT(32)
+, 
+control_mode_flags SERIAL
+, 
+filter_fault_flags SERIAL
+, 
+pos_horiz_accuracy FLOAT(32)
+, 
+pos_vert_accuracy FLOAT(32)
+, 
+mag_test_ratio FLOAT(32)
+, 
+vel_test_ratio FLOAT(32)
+, 
+pos_test_ratio FLOAT(32)
+, 
+hgt_test_ratio FLOAT(32)
+, 
+tas_test_ratio FLOAT(32)
+, 
+hagl_test_ratio FLOAT(32)
+, 
+beta_test_ratio FLOAT(32)
+, 
+time_slip FLOAT(32)
+, 
+accel_device_id SERIAL
+, 
+gyro_device_id SERIAL
+, 
+baro_device_id SERIAL
+, 
+mag_device_id SERIAL
+, 
+gps_check_fail_flags SMALLSERIAL
+, 
+innovation_check_flags SMALLSERIAL
+, 
+solution_status_flags SMALLSERIAL
+, 
+reset_count_vel_ne SMALLSERIAL
+, 
+reset_count_vel_d SMALLSERIAL
+, 
+reset_count_pos_ne SMALLSERIAL
+, 
+reset_count_pod_d SMALLSERIAL
+, 
+reset_count_quat SMALLSERIAL
+, 
+pre_flt_fail_innov_heading BOOLEAN
+, 
+pre_flt_fail_innov_vel_horiz BOOLEAN
+, 
+pre_flt_fail_innov_vel_vert BOOLEAN
+, 
+pre_flt_fail_innov_height BOOLEAN
+, 
+pre_flt_fail_mag_field_disturbed BOOLEAN
+, 
+health_flags SMALLSERIAL
+, 
+timeout_flags SMALLSERIAL
+
+)
+CREATE TABLE Logsestimator_status (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+vibe[0] FLOAT(32)
+, 
+vibe[1] FLOAT(32)
+, 
+vibe[2] FLOAT(32)
+, 
+output_tracking_error[0] FLOAT(32)
+, 
+output_tracking_error[1] FLOAT(32)
+, 
+output_tracking_error[2] FLOAT(32)
+, 
+control_mode_flags SERIAL
+, 
+filter_fault_flags SERIAL
+, 
+pos_horiz_accuracy FLOAT(32)
+, 
+pos_vert_accuracy FLOAT(32)
+, 
+mag_test_ratio FLOAT(32)
+, 
+vel_test_ratio FLOAT(32)
+, 
+pos_test_ratio FLOAT(32)
+, 
+hgt_test_ratio FLOAT(32)
+, 
+tas_test_ratio FLOAT(32)
+, 
+hagl_test_ratio FLOAT(32)
+, 
+beta_test_ratio FLOAT(32)
+, 
+time_slip FLOAT(32)
+, 
+accel_device_id SERIAL
+, 
+gyro_device_id SERIAL
+, 
+baro_device_id SERIAL
+, 
+mag_device_id SERIAL
+, 
+gps_check_fail_flags SMALLSERIAL
+, 
+innovation_check_flags SMALLSERIAL
+, 
+solution_status_flags SMALLSERIAL
+, 
+reset_count_vel_ne SMALLSERIAL
+, 
+reset_count_vel_d SMALLSERIAL
+, 
+reset_count_pos_ne SMALLSERIAL
+, 
+reset_count_pod_d SMALLSERIAL
+, 
+reset_count_quat SMALLSERIAL
+, 
+pre_flt_fail_innov_heading BOOLEAN
+, 
+pre_flt_fail_innov_vel_horiz BOOLEAN
+, 
+pre_flt_fail_innov_vel_vert BOOLEAN
+, 
+pre_flt_fail_innov_height BOOLEAN
+, 
+pre_flt_fail_mag_field_disturbed BOOLEAN
+, 
+health_flags SMALLSERIAL
+, 
+timeout_flags SMALLSERIAL
+
+)
+CREATE TABLE Logsestimator_status (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+vibe[0] FLOAT(32)
+, 
+vibe[1] FLOAT(32)
+, 
+vibe[2] FLOAT(32)
+, 
+output_tracking_error[0] FLOAT(32)
+, 
+output_tracking_error[1] FLOAT(32)
+, 
+output_tracking_error[2] FLOAT(32)
+, 
+control_mode_flags SERIAL
+, 
+filter_fault_flags SERIAL
+, 
+pos_horiz_accuracy FLOAT(32)
+, 
+pos_vert_accuracy FLOAT(32)
+, 
+mag_test_ratio FLOAT(32)
+, 
+vel_test_ratio FLOAT(32)
+, 
+pos_test_ratio FLOAT(32)
+, 
+hgt_test_ratio FLOAT(32)
+, 
+tas_test_ratio FLOAT(32)
+, 
+hagl_test_ratio FLOAT(32)
+, 
+beta_test_ratio FLOAT(32)
+, 
+time_slip FLOAT(32)
+, 
+accel_device_id SERIAL
+, 
+gyro_device_id SERIAL
+, 
+baro_device_id SERIAL
+, 
+mag_device_id SERIAL
+, 
+gps_check_fail_flags SMALLSERIAL
+, 
+innovation_check_flags SMALLSERIAL
+, 
+solution_status_flags SMALLSERIAL
+, 
+reset_count_vel_ne SMALLSERIAL
+, 
+reset_count_vel_d SMALLSERIAL
+, 
+reset_count_pos_ne SMALLSERIAL
+, 
+reset_count_pod_d SMALLSERIAL
+, 
+reset_count_quat SMALLSERIAL
+, 
+pre_flt_fail_innov_heading BOOLEAN
+, 
+pre_flt_fail_innov_vel_horiz BOOLEAN
+, 
+pre_flt_fail_innov_vel_vert BOOLEAN
+, 
+pre_flt_fail_innov_height BOOLEAN
+, 
+pre_flt_fail_mag_field_disturbed BOOLEAN
+, 
+health_flags SMALLSERIAL
+, 
+timeout_flags SMALLSERIAL
+
+)
+CREATE TABLE Logsestimator_status (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+vibe[0] FLOAT(32)
+, 
+vibe[1] FLOAT(32)
+, 
+vibe[2] FLOAT(32)
+, 
+output_tracking_error[0] FLOAT(32)
+, 
+output_tracking_error[1] FLOAT(32)
+, 
+output_tracking_error[2] FLOAT(32)
+, 
+control_mode_flags SERIAL
+, 
+filter_fault_flags SERIAL
+, 
+pos_horiz_accuracy FLOAT(32)
+, 
+pos_vert_accuracy FLOAT(32)
+, 
+mag_test_ratio FLOAT(32)
+, 
+vel_test_ratio FLOAT(32)
+, 
+pos_test_ratio FLOAT(32)
+, 
+hgt_test_ratio FLOAT(32)
+, 
+tas_test_ratio FLOAT(32)
+, 
+hagl_test_ratio FLOAT(32)
+, 
+beta_test_ratio FLOAT(32)
+, 
+time_slip FLOAT(32)
+, 
+accel_device_id SERIAL
+, 
+gyro_device_id SERIAL
+, 
+baro_device_id SERIAL
+, 
+mag_device_id SERIAL
+, 
+gps_check_fail_flags SMALLSERIAL
+, 
+innovation_check_flags SMALLSERIAL
+, 
+solution_status_flags SMALLSERIAL
+, 
+reset_count_vel_ne SMALLSERIAL
+, 
+reset_count_vel_d SMALLSERIAL
+, 
+reset_count_pos_ne SMALLSERIAL
+, 
+reset_count_pod_d SMALLSERIAL
+, 
+reset_count_quat SMALLSERIAL
+, 
+pre_flt_fail_innov_heading BOOLEAN
+, 
+pre_flt_fail_innov_vel_horiz BOOLEAN
+, 
+pre_flt_fail_innov_vel_vert BOOLEAN
+, 
+pre_flt_fail_innov_height BOOLEAN
+, 
+pre_flt_fail_mag_field_disturbed BOOLEAN
+, 
+health_flags SMALLSERIAL
+, 
+timeout_flags SMALLSERIAL
+
+)
+CREATE TABLE Logsestimator_states (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+states[0] FLOAT(32)
+, 
+states[1] FLOAT(32)
+, 
+states[2] FLOAT(32)
+, 
+states[3] FLOAT(32)
+, 
+states[4] FLOAT(32)
+, 
+states[5] FLOAT(32)
+, 
+states[6] FLOAT(32)
+, 
+states[7] FLOAT(32)
+, 
+states[8] FLOAT(32)
+, 
+states[9] FLOAT(32)
+, 
+states[10] FLOAT(32)
+, 
+states[11] FLOAT(32)
+, 
+states[12] FLOAT(32)
+, 
+states[13] FLOAT(32)
+, 
+states[14] FLOAT(32)
+, 
+states[15] FLOAT(32)
+, 
+states[16] FLOAT(32)
+, 
+states[17] FLOAT(32)
+, 
+states[18] FLOAT(32)
+, 
+states[19] FLOAT(32)
+, 
+states[20] FLOAT(32)
+, 
+states[21] FLOAT(32)
+, 
+states[22] FLOAT(32)
+, 
+states[23] FLOAT(32)
+, 
+covariances[0] FLOAT(32)
+, 
+covariances[1] FLOAT(32)
+, 
+covariances[2] FLOAT(32)
+, 
+covariances[3] FLOAT(32)
+, 
+covariances[4] FLOAT(32)
+, 
+covariances[5] FLOAT(32)
+, 
+covariances[6] FLOAT(32)
+, 
+covariances[7] FLOAT(32)
+, 
+covariances[8] FLOAT(32)
+, 
+covariances[9] FLOAT(32)
+, 
+covariances[10] FLOAT(32)
+, 
+covariances[11] FLOAT(32)
+, 
+covariances[12] FLOAT(32)
+, 
+covariances[13] FLOAT(32)
+, 
+covariances[14] FLOAT(32)
+, 
+covariances[15] FLOAT(32)
+, 
+covariances[16] FLOAT(32)
+, 
+covariances[17] FLOAT(32)
+, 
+covariances[18] FLOAT(32)
+, 
+covariances[19] FLOAT(32)
+, 
+covariances[20] FLOAT(32)
+, 
+covariances[21] FLOAT(32)
+, 
+covariances[22] FLOAT(32)
+, 
+covariances[23] FLOAT(32)
+, 
+n_states SMALLSERIAL
+
+)
+CREATE TABLE Logsestimator_states (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+states[0] FLOAT(32)
+, 
+states[1] FLOAT(32)
+, 
+states[2] FLOAT(32)
+, 
+states[3] FLOAT(32)
+, 
+states[4] FLOAT(32)
+, 
+states[5] FLOAT(32)
+, 
+states[6] FLOAT(32)
+, 
+states[7] FLOAT(32)
+, 
+states[8] FLOAT(32)
+, 
+states[9] FLOAT(32)
+, 
+states[10] FLOAT(32)
+, 
+states[11] FLOAT(32)
+, 
+states[12] FLOAT(32)
+, 
+states[13] FLOAT(32)
+, 
+states[14] FLOAT(32)
+, 
+states[15] FLOAT(32)
+, 
+states[16] FLOAT(32)
+, 
+states[17] FLOAT(32)
+, 
+states[18] FLOAT(32)
+, 
+states[19] FLOAT(32)
+, 
+states[20] FLOAT(32)
+, 
+states[21] FLOAT(32)
+, 
+states[22] FLOAT(32)
+, 
+states[23] FLOAT(32)
+, 
+covariances[0] FLOAT(32)
+, 
+covariances[1] FLOAT(32)
+, 
+covariances[2] FLOAT(32)
+, 
+covariances[3] FLOAT(32)
+, 
+covariances[4] FLOAT(32)
+, 
+covariances[5] FLOAT(32)
+, 
+covariances[6] FLOAT(32)
+, 
+covariances[7] FLOAT(32)
+, 
+covariances[8] FLOAT(32)
+, 
+covariances[9] FLOAT(32)
+, 
+covariances[10] FLOAT(32)
+, 
+covariances[11] FLOAT(32)
+, 
+covariances[12] FLOAT(32)
+, 
+covariances[13] FLOAT(32)
+, 
+covariances[14] FLOAT(32)
+, 
+covariances[15] FLOAT(32)
+, 
+covariances[16] FLOAT(32)
+, 
+covariances[17] FLOAT(32)
+, 
+covariances[18] FLOAT(32)
+, 
+covariances[19] FLOAT(32)
+, 
+covariances[20] FLOAT(32)
+, 
+covariances[21] FLOAT(32)
+, 
+covariances[22] FLOAT(32)
+, 
+covariances[23] FLOAT(32)
+, 
+n_states SMALLSERIAL
+
+)
+CREATE TABLE Logsestimator_states (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+states[0] FLOAT(32)
+, 
+states[1] FLOAT(32)
+, 
+states[2] FLOAT(32)
+, 
+states[3] FLOAT(32)
+, 
+states[4] FLOAT(32)
+, 
+states[5] FLOAT(32)
+, 
+states[6] FLOAT(32)
+, 
+states[7] FLOAT(32)
+, 
+states[8] FLOAT(32)
+, 
+states[9] FLOAT(32)
+, 
+states[10] FLOAT(32)
+, 
+states[11] FLOAT(32)
+, 
+states[12] FLOAT(32)
+, 
+states[13] FLOAT(32)
+, 
+states[14] FLOAT(32)
+, 
+states[15] FLOAT(32)
+, 
+states[16] FLOAT(32)
+, 
+states[17] FLOAT(32)
+, 
+states[18] FLOAT(32)
+, 
+states[19] FLOAT(32)
+, 
+states[20] FLOAT(32)
+, 
+states[21] FLOAT(32)
+, 
+states[22] FLOAT(32)
+, 
+states[23] FLOAT(32)
+, 
+covariances[0] FLOAT(32)
+, 
+covariances[1] FLOAT(32)
+, 
+covariances[2] FLOAT(32)
+, 
+covariances[3] FLOAT(32)
+, 
+covariances[4] FLOAT(32)
+, 
+covariances[5] FLOAT(32)
+, 
+covariances[6] FLOAT(32)
+, 
+covariances[7] FLOAT(32)
+, 
+covariances[8] FLOAT(32)
+, 
+covariances[9] FLOAT(32)
+, 
+covariances[10] FLOAT(32)
+, 
+covariances[11] FLOAT(32)
+, 
+covariances[12] FLOAT(32)
+, 
+covariances[13] FLOAT(32)
+, 
+covariances[14] FLOAT(32)
+, 
+covariances[15] FLOAT(32)
+, 
+covariances[16] FLOAT(32)
+, 
+covariances[17] FLOAT(32)
+, 
+covariances[18] FLOAT(32)
+, 
+covariances[19] FLOAT(32)
+, 
+covariances[20] FLOAT(32)
+, 
+covariances[21] FLOAT(32)
+, 
+covariances[22] FLOAT(32)
+, 
+covariances[23] FLOAT(32)
+, 
+n_states SMALLSERIAL
+
+)
+CREATE TABLE Logsestimator_states (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+states[0] FLOAT(32)
+, 
+states[1] FLOAT(32)
+, 
+states[2] FLOAT(32)
+, 
+states[3] FLOAT(32)
+, 
+states[4] FLOAT(32)
+, 
+states[5] FLOAT(32)
+, 
+states[6] FLOAT(32)
+, 
+states[7] FLOAT(32)
+, 
+states[8] FLOAT(32)
+, 
+states[9] FLOAT(32)
+, 
+states[10] FLOAT(32)
+, 
+states[11] FLOAT(32)
+, 
+states[12] FLOAT(32)
+, 
+states[13] FLOAT(32)
+, 
+states[14] FLOAT(32)
+, 
+states[15] FLOAT(32)
+, 
+states[16] FLOAT(32)
+, 
+states[17] FLOAT(32)
+, 
+states[18] FLOAT(32)
+, 
+states[19] FLOAT(32)
+, 
+states[20] FLOAT(32)
+, 
+states[21] FLOAT(32)
+, 
+states[22] FLOAT(32)
+, 
+states[23] FLOAT(32)
+, 
+covariances[0] FLOAT(32)
+, 
+covariances[1] FLOAT(32)
+, 
+covariances[2] FLOAT(32)
+, 
+covariances[3] FLOAT(32)
+, 
+covariances[4] FLOAT(32)
+, 
+covariances[5] FLOAT(32)
+, 
+covariances[6] FLOAT(32)
+, 
+covariances[7] FLOAT(32)
+, 
+covariances[8] FLOAT(32)
+, 
+covariances[9] FLOAT(32)
+, 
+covariances[10] FLOAT(32)
+, 
+covariances[11] FLOAT(32)
+, 
+covariances[12] FLOAT(32)
+, 
+covariances[13] FLOAT(32)
+, 
+covariances[14] FLOAT(32)
+, 
+covariances[15] FLOAT(32)
+, 
+covariances[16] FLOAT(32)
+, 
+covariances[17] FLOAT(32)
+, 
+covariances[18] FLOAT(32)
+, 
+covariances[19] FLOAT(32)
+, 
+covariances[20] FLOAT(32)
+, 
+covariances[21] FLOAT(32)
+, 
+covariances[22] FLOAT(32)
+, 
+covariances[23] FLOAT(32)
+, 
+n_states SMALLSERIAL
+
+)
+CREATE TABLE Logsestimator_states (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+states[0] FLOAT(32)
+, 
+states[1] FLOAT(32)
+, 
+states[2] FLOAT(32)
+, 
+states[3] FLOAT(32)
+, 
+states[4] FLOAT(32)
+, 
+states[5] FLOAT(32)
+, 
+states[6] FLOAT(32)
+, 
+states[7] FLOAT(32)
+, 
+states[8] FLOAT(32)
+, 
+states[9] FLOAT(32)
+, 
+states[10] FLOAT(32)
+, 
+states[11] FLOAT(32)
+, 
+states[12] FLOAT(32)
+, 
+states[13] FLOAT(32)
+, 
+states[14] FLOAT(32)
+, 
+states[15] FLOAT(32)
+, 
+states[16] FLOAT(32)
+, 
+states[17] FLOAT(32)
+, 
+states[18] FLOAT(32)
+, 
+states[19] FLOAT(32)
+, 
+states[20] FLOAT(32)
+, 
+states[21] FLOAT(32)
+, 
+states[22] FLOAT(32)
+, 
+states[23] FLOAT(32)
+, 
+covariances[0] FLOAT(32)
+, 
+covariances[1] FLOAT(32)
+, 
+covariances[2] FLOAT(32)
+, 
+covariances[3] FLOAT(32)
+, 
+covariances[4] FLOAT(32)
+, 
+covariances[5] FLOAT(32)
+, 
+covariances[6] FLOAT(32)
+, 
+covariances[7] FLOAT(32)
+, 
+covariances[8] FLOAT(32)
+, 
+covariances[9] FLOAT(32)
+, 
+covariances[10] FLOAT(32)
+, 
+covariances[11] FLOAT(32)
+, 
+covariances[12] FLOAT(32)
+, 
+covariances[13] FLOAT(32)
+, 
+covariances[14] FLOAT(32)
+, 
+covariances[15] FLOAT(32)
+, 
+covariances[16] FLOAT(32)
+, 
+covariances[17] FLOAT(32)
+, 
+covariances[18] FLOAT(32)
+, 
+covariances[19] FLOAT(32)
+, 
+covariances[20] FLOAT(32)
+, 
+covariances[21] FLOAT(32)
+, 
+covariances[22] FLOAT(32)
+, 
+covariances[23] FLOAT(32)
+, 
+n_states SMALLSERIAL
+
+)
+CREATE TABLE Logsestimator_states (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+states[0] FLOAT(32)
+, 
+states[1] FLOAT(32)
+, 
+states[2] FLOAT(32)
+, 
+states[3] FLOAT(32)
+, 
+states[4] FLOAT(32)
+, 
+states[5] FLOAT(32)
+, 
+states[6] FLOAT(32)
+, 
+states[7] FLOAT(32)
+, 
+states[8] FLOAT(32)
+, 
+states[9] FLOAT(32)
+, 
+states[10] FLOAT(32)
+, 
+states[11] FLOAT(32)
+, 
+states[12] FLOAT(32)
+, 
+states[13] FLOAT(32)
+, 
+states[14] FLOAT(32)
+, 
+states[15] FLOAT(32)
+, 
+states[16] FLOAT(32)
+, 
+states[17] FLOAT(32)
+, 
+states[18] FLOAT(32)
+, 
+states[19] FLOAT(32)
+, 
+states[20] FLOAT(32)
+, 
+states[21] FLOAT(32)
+, 
+states[22] FLOAT(32)
+, 
+states[23] FLOAT(32)
+, 
+covariances[0] FLOAT(32)
+, 
+covariances[1] FLOAT(32)
+, 
+covariances[2] FLOAT(32)
+, 
+covariances[3] FLOAT(32)
+, 
+covariances[4] FLOAT(32)
+, 
+covariances[5] FLOAT(32)
+, 
+covariances[6] FLOAT(32)
+, 
+covariances[7] FLOAT(32)
+, 
+covariances[8] FLOAT(32)
+, 
+covariances[9] FLOAT(32)
+, 
+covariances[10] FLOAT(32)
+, 
+covariances[11] FLOAT(32)
+, 
+covariances[12] FLOAT(32)
+, 
+covariances[13] FLOAT(32)
+, 
+covariances[14] FLOAT(32)
+, 
+covariances[15] FLOAT(32)
+, 
+covariances[16] FLOAT(32)
+, 
+covariances[17] FLOAT(32)
+, 
+covariances[18] FLOAT(32)
+, 
+covariances[19] FLOAT(32)
+, 
+covariances[20] FLOAT(32)
+, 
+covariances[21] FLOAT(32)
+, 
+covariances[22] FLOAT(32)
+, 
+covariances[23] FLOAT(32)
+, 
+n_states SMALLSERIAL
+
+)
+CREATE TABLE Logsestimator_sensor_bias (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+gyro_device_id SERIAL
+, 
+gyro_bias[0] FLOAT(32)
+, 
+gyro_bias[1] FLOAT(32)
+, 
+gyro_bias[2] FLOAT(32)
+, 
+gyro_bias_limit FLOAT(32)
+, 
+gyro_bias_variance[0] FLOAT(32)
+, 
+gyro_bias_variance[1] FLOAT(32)
+, 
+gyro_bias_variance[2] FLOAT(32)
+, 
+accel_device_id SERIAL
+, 
+accel_bias[0] FLOAT(32)
+, 
+accel_bias[1] FLOAT(32)
+, 
+accel_bias[2] FLOAT(32)
+, 
+accel_bias_limit FLOAT(32)
+, 
+accel_bias_variance[0] FLOAT(32)
+, 
+accel_bias_variance[1] FLOAT(32)
+, 
+accel_bias_variance[2] FLOAT(32)
+, 
+mag_device_id SERIAL
+, 
+mag_bias[0] FLOAT(32)
+, 
+mag_bias[1] FLOAT(32)
+, 
+mag_bias[2] FLOAT(32)
+, 
+mag_bias_limit FLOAT(32)
+, 
+mag_bias_variance[0] FLOAT(32)
+, 
+mag_bias_variance[1] FLOAT(32)
+, 
+mag_bias_variance[2] FLOAT(32)
+, 
+gyro_bias_valid BOOLEAN
+, 
+accel_bias_valid BOOLEAN
+, 
+mag_bias_valid BOOLEAN
+
+)
+CREATE TABLE Logsestimator_sensor_bias (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+gyro_device_id SERIAL
+, 
+gyro_bias[0] FLOAT(32)
+, 
+gyro_bias[1] FLOAT(32)
+, 
+gyro_bias[2] FLOAT(32)
+, 
+gyro_bias_limit FLOAT(32)
+, 
+gyro_bias_variance[0] FLOAT(32)
+, 
+gyro_bias_variance[1] FLOAT(32)
+, 
+gyro_bias_variance[2] FLOAT(32)
+, 
+accel_device_id SERIAL
+, 
+accel_bias[0] FLOAT(32)
+, 
+accel_bias[1] FLOAT(32)
+, 
+accel_bias[2] FLOAT(32)
+, 
+accel_bias_limit FLOAT(32)
+, 
+accel_bias_variance[0] FLOAT(32)
+, 
+accel_bias_variance[1] FLOAT(32)
+, 
+accel_bias_variance[2] FLOAT(32)
+, 
+mag_device_id SERIAL
+, 
+mag_bias[0] FLOAT(32)
+, 
+mag_bias[1] FLOAT(32)
+, 
+mag_bias[2] FLOAT(32)
+, 
+mag_bias_limit FLOAT(32)
+, 
+mag_bias_variance[0] FLOAT(32)
+, 
+mag_bias_variance[1] FLOAT(32)
+, 
+mag_bias_variance[2] FLOAT(32)
+, 
+gyro_bias_valid BOOLEAN
+, 
+accel_bias_valid BOOLEAN
+, 
+mag_bias_valid BOOLEAN
+
+)
+CREATE TABLE Logsestimator_sensor_bias (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+gyro_device_id SERIAL
+, 
+gyro_bias[0] FLOAT(32)
+, 
+gyro_bias[1] FLOAT(32)
+, 
+gyro_bias[2] FLOAT(32)
+, 
+gyro_bias_limit FLOAT(32)
+, 
+gyro_bias_variance[0] FLOAT(32)
+, 
+gyro_bias_variance[1] FLOAT(32)
+, 
+gyro_bias_variance[2] FLOAT(32)
+, 
+accel_device_id SERIAL
+, 
+accel_bias[0] FLOAT(32)
+, 
+accel_bias[1] FLOAT(32)
+, 
+accel_bias[2] FLOAT(32)
+, 
+accel_bias_limit FLOAT(32)
+, 
+accel_bias_variance[0] FLOAT(32)
+, 
+accel_bias_variance[1] FLOAT(32)
+, 
+accel_bias_variance[2] FLOAT(32)
+, 
+mag_device_id SERIAL
+, 
+mag_bias[0] FLOAT(32)
+, 
+mag_bias[1] FLOAT(32)
+, 
+mag_bias[2] FLOAT(32)
+, 
+mag_bias_limit FLOAT(32)
+, 
+mag_bias_variance[0] FLOAT(32)
+, 
+mag_bias_variance[1] FLOAT(32)
+, 
+mag_bias_variance[2] FLOAT(32)
+, 
+gyro_bias_valid BOOLEAN
+, 
+accel_bias_valid BOOLEAN
+, 
+mag_bias_valid BOOLEAN
+
+)
+CREATE TABLE Logsestimator_sensor_bias (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+gyro_device_id SERIAL
+, 
+gyro_bias[0] FLOAT(32)
+, 
+gyro_bias[1] FLOAT(32)
+, 
+gyro_bias[2] FLOAT(32)
+, 
+gyro_bias_limit FLOAT(32)
+, 
+gyro_bias_variance[0] FLOAT(32)
+, 
+gyro_bias_variance[1] FLOAT(32)
+, 
+gyro_bias_variance[2] FLOAT(32)
+, 
+accel_device_id SERIAL
+, 
+accel_bias[0] FLOAT(32)
+, 
+accel_bias[1] FLOAT(32)
+, 
+accel_bias[2] FLOAT(32)
+, 
+accel_bias_limit FLOAT(32)
+, 
+accel_bias_variance[0] FLOAT(32)
+, 
+accel_bias_variance[1] FLOAT(32)
+, 
+accel_bias_variance[2] FLOAT(32)
+, 
+mag_device_id SERIAL
+, 
+mag_bias[0] FLOAT(32)
+, 
+mag_bias[1] FLOAT(32)
+, 
+mag_bias[2] FLOAT(32)
+, 
+mag_bias_limit FLOAT(32)
+, 
+mag_bias_variance[0] FLOAT(32)
+, 
+mag_bias_variance[1] FLOAT(32)
+, 
+mag_bias_variance[2] FLOAT(32)
+, 
+gyro_bias_valid BOOLEAN
+, 
+accel_bias_valid BOOLEAN
+, 
+mag_bias_valid BOOLEAN
+
+)
+CREATE TABLE Logsestimator_sensor_bias (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+gyro_device_id SERIAL
+, 
+gyro_bias[0] FLOAT(32)
+, 
+gyro_bias[1] FLOAT(32)
+, 
+gyro_bias[2] FLOAT(32)
+, 
+gyro_bias_limit FLOAT(32)
+, 
+gyro_bias_variance[0] FLOAT(32)
+, 
+gyro_bias_variance[1] FLOAT(32)
+, 
+gyro_bias_variance[2] FLOAT(32)
+, 
+accel_device_id SERIAL
+, 
+accel_bias[0] FLOAT(32)
+, 
+accel_bias[1] FLOAT(32)
+, 
+accel_bias[2] FLOAT(32)
+, 
+accel_bias_limit FLOAT(32)
+, 
+accel_bias_variance[0] FLOAT(32)
+, 
+accel_bias_variance[1] FLOAT(32)
+, 
+accel_bias_variance[2] FLOAT(32)
+, 
+mag_device_id SERIAL
+, 
+mag_bias[0] FLOAT(32)
+, 
+mag_bias[1] FLOAT(32)
+, 
+mag_bias[2] FLOAT(32)
+, 
+mag_bias_limit FLOAT(32)
+, 
+mag_bias_variance[0] FLOAT(32)
+, 
+mag_bias_variance[1] FLOAT(32)
+, 
+mag_bias_variance[2] FLOAT(32)
+, 
+gyro_bias_valid BOOLEAN
+, 
+accel_bias_valid BOOLEAN
+, 
+mag_bias_valid BOOLEAN
+
+)
+CREATE TABLE Logsestimator_sensor_bias (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+gyro_device_id SERIAL
+, 
+gyro_bias[0] FLOAT(32)
+, 
+gyro_bias[1] FLOAT(32)
+, 
+gyro_bias[2] FLOAT(32)
+, 
+gyro_bias_limit FLOAT(32)
+, 
+gyro_bias_variance[0] FLOAT(32)
+, 
+gyro_bias_variance[1] FLOAT(32)
+, 
+gyro_bias_variance[2] FLOAT(32)
+, 
+accel_device_id SERIAL
+, 
+accel_bias[0] FLOAT(32)
+, 
+accel_bias[1] FLOAT(32)
+, 
+accel_bias[2] FLOAT(32)
+, 
+accel_bias_limit FLOAT(32)
+, 
+accel_bias_variance[0] FLOAT(32)
+, 
+accel_bias_variance[1] FLOAT(32)
+, 
+accel_bias_variance[2] FLOAT(32)
+, 
+mag_device_id SERIAL
+, 
+mag_bias[0] FLOAT(32)
+, 
+mag_bias[1] FLOAT(32)
+, 
+mag_bias[2] FLOAT(32)
+, 
+mag_bias_limit FLOAT(32)
+, 
+mag_bias_variance[0] FLOAT(32)
+, 
+mag_bias_variance[1] FLOAT(32)
+, 
+mag_bias_variance[2] FLOAT(32)
+, 
+gyro_bias_valid BOOLEAN
+, 
+accel_bias_valid BOOLEAN
+, 
+mag_bias_valid BOOLEAN
+
+)
+CREATE TABLE Logsestimator_innovations (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+gps_hvel[0] FLOAT(32)
+, 
+gps_hvel[1] FLOAT(32)
+, 
+gps_vvel FLOAT(32)
+, 
+gps_hpos[0] FLOAT(32)
+, 
+gps_hpos[1] FLOAT(32)
+, 
+gps_vpos FLOAT(32)
+, 
+ev_hvel[0] FLOAT(32)
+, 
+ev_hvel[1] FLOAT(32)
+, 
+ev_vvel FLOAT(32)
+, 
+ev_hpos[0] FLOAT(32)
+, 
+ev_hpos[1] FLOAT(32)
+, 
+ev_vpos FLOAT(32)
+, 
+rng_vpos FLOAT(32)
+, 
+baro_vpos FLOAT(32)
+, 
+aux_hvel[0] FLOAT(32)
+, 
+aux_hvel[1] FLOAT(32)
+, 
+aux_vvel FLOAT(32)
+, 
+flow[0] FLOAT(32)
+, 
+flow[1] FLOAT(32)
+, 
+heading FLOAT(32)
+, 
+mag_field[0] FLOAT(32)
+, 
+mag_field[1] FLOAT(32)
+, 
+mag_field[2] FLOAT(32)
+, 
+drag[0] FLOAT(32)
+, 
+drag[1] FLOAT(32)
+, 
+airspeed FLOAT(32)
+, 
+beta FLOAT(32)
+, 
+hagl FLOAT(32)
+
+)
+CREATE TABLE Logsestimator_innovations (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+gps_hvel[0] FLOAT(32)
+, 
+gps_hvel[1] FLOAT(32)
+, 
+gps_vvel FLOAT(32)
+, 
+gps_hpos[0] FLOAT(32)
+, 
+gps_hpos[1] FLOAT(32)
+, 
+gps_vpos FLOAT(32)
+, 
+ev_hvel[0] FLOAT(32)
+, 
+ev_hvel[1] FLOAT(32)
+, 
+ev_vvel FLOAT(32)
+, 
+ev_hpos[0] FLOAT(32)
+, 
+ev_hpos[1] FLOAT(32)
+, 
+ev_vpos FLOAT(32)
+, 
+rng_vpos FLOAT(32)
+, 
+baro_vpos FLOAT(32)
+, 
+aux_hvel[0] FLOAT(32)
+, 
+aux_hvel[1] FLOAT(32)
+, 
+aux_vvel FLOAT(32)
+, 
+flow[0] FLOAT(32)
+, 
+flow[1] FLOAT(32)
+, 
+heading FLOAT(32)
+, 
+mag_field[0] FLOAT(32)
+, 
+mag_field[1] FLOAT(32)
+, 
+mag_field[2] FLOAT(32)
+, 
+drag[0] FLOAT(32)
+, 
+drag[1] FLOAT(32)
+, 
+airspeed FLOAT(32)
+, 
+beta FLOAT(32)
+, 
+hagl FLOAT(32)
+
+)
+CREATE TABLE Logsestimator_innovations (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+gps_hvel[0] FLOAT(32)
+, 
+gps_hvel[1] FLOAT(32)
+, 
+gps_vvel FLOAT(32)
+, 
+gps_hpos[0] FLOAT(32)
+, 
+gps_hpos[1] FLOAT(32)
+, 
+gps_vpos FLOAT(32)
+, 
+ev_hvel[0] FLOAT(32)
+, 
+ev_hvel[1] FLOAT(32)
+, 
+ev_vvel FLOAT(32)
+, 
+ev_hpos[0] FLOAT(32)
+, 
+ev_hpos[1] FLOAT(32)
+, 
+ev_vpos FLOAT(32)
+, 
+rng_vpos FLOAT(32)
+, 
+baro_vpos FLOAT(32)
+, 
+aux_hvel[0] FLOAT(32)
+, 
+aux_hvel[1] FLOAT(32)
+, 
+aux_vvel FLOAT(32)
+, 
+flow[0] FLOAT(32)
+, 
+flow[1] FLOAT(32)
+, 
+heading FLOAT(32)
+, 
+mag_field[0] FLOAT(32)
+, 
+mag_field[1] FLOAT(32)
+, 
+mag_field[2] FLOAT(32)
+, 
+drag[0] FLOAT(32)
+, 
+drag[1] FLOAT(32)
+, 
+airspeed FLOAT(32)
+, 
+beta FLOAT(32)
+, 
+hagl FLOAT(32)
+
+)
+CREATE TABLE Logsestimator_innovations (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+gps_hvel[0] FLOAT(32)
+, 
+gps_hvel[1] FLOAT(32)
+, 
+gps_vvel FLOAT(32)
+, 
+gps_hpos[0] FLOAT(32)
+, 
+gps_hpos[1] FLOAT(32)
+, 
+gps_vpos FLOAT(32)
+, 
+ev_hvel[0] FLOAT(32)
+, 
+ev_hvel[1] FLOAT(32)
+, 
+ev_vvel FLOAT(32)
+, 
+ev_hpos[0] FLOAT(32)
+, 
+ev_hpos[1] FLOAT(32)
+, 
+ev_vpos FLOAT(32)
+, 
+rng_vpos FLOAT(32)
+, 
+baro_vpos FLOAT(32)
+, 
+aux_hvel[0] FLOAT(32)
+, 
+aux_hvel[1] FLOAT(32)
+, 
+aux_vvel FLOAT(32)
+, 
+flow[0] FLOAT(32)
+, 
+flow[1] FLOAT(32)
+, 
+heading FLOAT(32)
+, 
+mag_field[0] FLOAT(32)
+, 
+mag_field[1] FLOAT(32)
+, 
+mag_field[2] FLOAT(32)
+, 
+drag[0] FLOAT(32)
+, 
+drag[1] FLOAT(32)
+, 
+airspeed FLOAT(32)
+, 
+beta FLOAT(32)
+, 
+hagl FLOAT(32)
+
+)
+CREATE TABLE Logsestimator_innovations (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+gps_hvel[0] FLOAT(32)
+, 
+gps_hvel[1] FLOAT(32)
+, 
+gps_vvel FLOAT(32)
+, 
+gps_hpos[0] FLOAT(32)
+, 
+gps_hpos[1] FLOAT(32)
+, 
+gps_vpos FLOAT(32)
+, 
+ev_hvel[0] FLOAT(32)
+, 
+ev_hvel[1] FLOAT(32)
+, 
+ev_vvel FLOAT(32)
+, 
+ev_hpos[0] FLOAT(32)
+, 
+ev_hpos[1] FLOAT(32)
+, 
+ev_vpos FLOAT(32)
+, 
+rng_vpos FLOAT(32)
+, 
+baro_vpos FLOAT(32)
+, 
+aux_hvel[0] FLOAT(32)
+, 
+aux_hvel[1] FLOAT(32)
+, 
+aux_vvel FLOAT(32)
+, 
+flow[0] FLOAT(32)
+, 
+flow[1] FLOAT(32)
+, 
+heading FLOAT(32)
+, 
+mag_field[0] FLOAT(32)
+, 
+mag_field[1] FLOAT(32)
+, 
+mag_field[2] FLOAT(32)
+, 
+drag[0] FLOAT(32)
+, 
+drag[1] FLOAT(32)
+, 
+airspeed FLOAT(32)
+, 
+beta FLOAT(32)
+, 
+hagl FLOAT(32)
+
+)
+CREATE TABLE Logsestimator_innovations (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+gps_hvel[0] FLOAT(32)
+, 
+gps_hvel[1] FLOAT(32)
+, 
+gps_vvel FLOAT(32)
+, 
+gps_hpos[0] FLOAT(32)
+, 
+gps_hpos[1] FLOAT(32)
+, 
+gps_vpos FLOAT(32)
+, 
+ev_hvel[0] FLOAT(32)
+, 
+ev_hvel[1] FLOAT(32)
+, 
+ev_vvel FLOAT(32)
+, 
+ev_hpos[0] FLOAT(32)
+, 
+ev_hpos[1] FLOAT(32)
+, 
+ev_vpos FLOAT(32)
+, 
+rng_vpos FLOAT(32)
+, 
+baro_vpos FLOAT(32)
+, 
+aux_hvel[0] FLOAT(32)
+, 
+aux_hvel[1] FLOAT(32)
+, 
+aux_vvel FLOAT(32)
+, 
+flow[0] FLOAT(32)
+, 
+flow[1] FLOAT(32)
+, 
+heading FLOAT(32)
+, 
+mag_field[0] FLOAT(32)
+, 
+mag_field[1] FLOAT(32)
+, 
+mag_field[2] FLOAT(32)
+, 
+drag[0] FLOAT(32)
+, 
+drag[1] FLOAT(32)
+, 
+airspeed FLOAT(32)
+, 
+beta FLOAT(32)
+, 
+hagl FLOAT(32)
+
+)
+CREATE TABLE Logsestimator_innovation_variances (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+gps_hvel[0] FLOAT(32)
+, 
+gps_hvel[1] FLOAT(32)
+, 
+gps_vvel FLOAT(32)
+, 
+gps_hpos[0] FLOAT(32)
+, 
+gps_hpos[1] FLOAT(32)
+, 
+gps_vpos FLOAT(32)
+, 
+ev_hvel[0] FLOAT(32)
+, 
+ev_hvel[1] FLOAT(32)
+, 
+ev_vvel FLOAT(32)
+, 
+ev_hpos[0] FLOAT(32)
+, 
+ev_hpos[1] FLOAT(32)
+, 
+ev_vpos FLOAT(32)
+, 
+rng_vpos FLOAT(32)
+, 
+baro_vpos FLOAT(32)
+, 
+aux_hvel[0] FLOAT(32)
+, 
+aux_hvel[1] FLOAT(32)
+, 
+aux_vvel FLOAT(32)
+, 
+flow[0] FLOAT(32)
+, 
+flow[1] FLOAT(32)
+, 
+heading FLOAT(32)
+, 
+mag_field[0] FLOAT(32)
+, 
+mag_field[1] FLOAT(32)
+, 
+mag_field[2] FLOAT(32)
+, 
+drag[0] FLOAT(32)
+, 
+drag[1] FLOAT(32)
+, 
+airspeed FLOAT(32)
+, 
+beta FLOAT(32)
+, 
+hagl FLOAT(32)
+
+)
+CREATE TABLE Logsestimator_innovation_variances (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+gps_hvel[0] FLOAT(32)
+, 
+gps_hvel[1] FLOAT(32)
+, 
+gps_vvel FLOAT(32)
+, 
+gps_hpos[0] FLOAT(32)
+, 
+gps_hpos[1] FLOAT(32)
+, 
+gps_vpos FLOAT(32)
+, 
+ev_hvel[0] FLOAT(32)
+, 
+ev_hvel[1] FLOAT(32)
+, 
+ev_vvel FLOAT(32)
+, 
+ev_hpos[0] FLOAT(32)
+, 
+ev_hpos[1] FLOAT(32)
+, 
+ev_vpos FLOAT(32)
+, 
+rng_vpos FLOAT(32)
+, 
+baro_vpos FLOAT(32)
+, 
+aux_hvel[0] FLOAT(32)
+, 
+aux_hvel[1] FLOAT(32)
+, 
+aux_vvel FLOAT(32)
+, 
+flow[0] FLOAT(32)
+, 
+flow[1] FLOAT(32)
+, 
+heading FLOAT(32)
+, 
+mag_field[0] FLOAT(32)
+, 
+mag_field[1] FLOAT(32)
+, 
+mag_field[2] FLOAT(32)
+, 
+drag[0] FLOAT(32)
+, 
+drag[1] FLOAT(32)
+, 
+airspeed FLOAT(32)
+, 
+beta FLOAT(32)
+, 
+hagl FLOAT(32)
+
+)
+CREATE TABLE Logsestimator_innovation_variances (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+gps_hvel[0] FLOAT(32)
+, 
+gps_hvel[1] FLOAT(32)
+, 
+gps_vvel FLOAT(32)
+, 
+gps_hpos[0] FLOAT(32)
+, 
+gps_hpos[1] FLOAT(32)
+, 
+gps_vpos FLOAT(32)
+, 
+ev_hvel[0] FLOAT(32)
+, 
+ev_hvel[1] FLOAT(32)
+, 
+ev_vvel FLOAT(32)
+, 
+ev_hpos[0] FLOAT(32)
+, 
+ev_hpos[1] FLOAT(32)
+, 
+ev_vpos FLOAT(32)
+, 
+rng_vpos FLOAT(32)
+, 
+baro_vpos FLOAT(32)
+, 
+aux_hvel[0] FLOAT(32)
+, 
+aux_hvel[1] FLOAT(32)
+, 
+aux_vvel FLOAT(32)
+, 
+flow[0] FLOAT(32)
+, 
+flow[1] FLOAT(32)
+, 
+heading FLOAT(32)
+, 
+mag_field[0] FLOAT(32)
+, 
+mag_field[1] FLOAT(32)
+, 
+mag_field[2] FLOAT(32)
+, 
+drag[0] FLOAT(32)
+, 
+drag[1] FLOAT(32)
+, 
+airspeed FLOAT(32)
+, 
+beta FLOAT(32)
+, 
+hagl FLOAT(32)
+
+)
+CREATE TABLE Logsestimator_innovation_variances (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+gps_hvel[0] FLOAT(32)
+, 
+gps_hvel[1] FLOAT(32)
+, 
+gps_vvel FLOAT(32)
+, 
+gps_hpos[0] FLOAT(32)
+, 
+gps_hpos[1] FLOAT(32)
+, 
+gps_vpos FLOAT(32)
+, 
+ev_hvel[0] FLOAT(32)
+, 
+ev_hvel[1] FLOAT(32)
+, 
+ev_vvel FLOAT(32)
+, 
+ev_hpos[0] FLOAT(32)
+, 
+ev_hpos[1] FLOAT(32)
+, 
+ev_vpos FLOAT(32)
+, 
+rng_vpos FLOAT(32)
+, 
+baro_vpos FLOAT(32)
+, 
+aux_hvel[0] FLOAT(32)
+, 
+aux_hvel[1] FLOAT(32)
+, 
+aux_vvel FLOAT(32)
+, 
+flow[0] FLOAT(32)
+, 
+flow[1] FLOAT(32)
+, 
+heading FLOAT(32)
+, 
+mag_field[0] FLOAT(32)
+, 
+mag_field[1] FLOAT(32)
+, 
+mag_field[2] FLOAT(32)
+, 
+drag[0] FLOAT(32)
+, 
+drag[1] FLOAT(32)
+, 
+airspeed FLOAT(32)
+, 
+beta FLOAT(32)
+, 
+hagl FLOAT(32)
+
+)
+CREATE TABLE Logsestimator_innovation_variances (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+gps_hvel[0] FLOAT(32)
+, 
+gps_hvel[1] FLOAT(32)
+, 
+gps_vvel FLOAT(32)
+, 
+gps_hpos[0] FLOAT(32)
+, 
+gps_hpos[1] FLOAT(32)
+, 
+gps_vpos FLOAT(32)
+, 
+ev_hvel[0] FLOAT(32)
+, 
+ev_hvel[1] FLOAT(32)
+, 
+ev_vvel FLOAT(32)
+, 
+ev_hpos[0] FLOAT(32)
+, 
+ev_hpos[1] FLOAT(32)
+, 
+ev_vpos FLOAT(32)
+, 
+rng_vpos FLOAT(32)
+, 
+baro_vpos FLOAT(32)
+, 
+aux_hvel[0] FLOAT(32)
+, 
+aux_hvel[1] FLOAT(32)
+, 
+aux_vvel FLOAT(32)
+, 
+flow[0] FLOAT(32)
+, 
+flow[1] FLOAT(32)
+, 
+heading FLOAT(32)
+, 
+mag_field[0] FLOAT(32)
+, 
+mag_field[1] FLOAT(32)
+, 
+mag_field[2] FLOAT(32)
+, 
+drag[0] FLOAT(32)
+, 
+drag[1] FLOAT(32)
+, 
+airspeed FLOAT(32)
+, 
+beta FLOAT(32)
+, 
+hagl FLOAT(32)
+
+)
+CREATE TABLE Logsestimator_innovation_variances (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+gps_hvel[0] FLOAT(32)
+, 
+gps_hvel[1] FLOAT(32)
+, 
+gps_vvel FLOAT(32)
+, 
+gps_hpos[0] FLOAT(32)
+, 
+gps_hpos[1] FLOAT(32)
+, 
+gps_vpos FLOAT(32)
+, 
+ev_hvel[0] FLOAT(32)
+, 
+ev_hvel[1] FLOAT(32)
+, 
+ev_vvel FLOAT(32)
+, 
+ev_hpos[0] FLOAT(32)
+, 
+ev_hpos[1] FLOAT(32)
+, 
+ev_vpos FLOAT(32)
+, 
+rng_vpos FLOAT(32)
+, 
+baro_vpos FLOAT(32)
+, 
+aux_hvel[0] FLOAT(32)
+, 
+aux_hvel[1] FLOAT(32)
+, 
+aux_vvel FLOAT(32)
+, 
+flow[0] FLOAT(32)
+, 
+flow[1] FLOAT(32)
+, 
+heading FLOAT(32)
+, 
+mag_field[0] FLOAT(32)
+, 
+mag_field[1] FLOAT(32)
+, 
+mag_field[2] FLOAT(32)
+, 
+drag[0] FLOAT(32)
+, 
+drag[1] FLOAT(32)
+, 
+airspeed FLOAT(32)
+, 
+beta FLOAT(32)
+, 
+hagl FLOAT(32)
+
+)
+CREATE TABLE Logsestimator_innovation_test_ratios (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+gps_hvel[0] FLOAT(32)
+, 
+gps_hvel[1] FLOAT(32)
+, 
+gps_vvel FLOAT(32)
+, 
+gps_hpos[0] FLOAT(32)
+, 
+gps_hpos[1] FLOAT(32)
+, 
+gps_vpos FLOAT(32)
+, 
+ev_hvel[0] FLOAT(32)
+, 
+ev_hvel[1] FLOAT(32)
+, 
+ev_vvel FLOAT(32)
+, 
+ev_hpos[0] FLOAT(32)
+, 
+ev_hpos[1] FLOAT(32)
+, 
+ev_vpos FLOAT(32)
+, 
+rng_vpos FLOAT(32)
+, 
+baro_vpos FLOAT(32)
+, 
+aux_hvel[0] FLOAT(32)
+, 
+aux_hvel[1] FLOAT(32)
+, 
+aux_vvel FLOAT(32)
+, 
+flow[0] FLOAT(32)
+, 
+flow[1] FLOAT(32)
+, 
+heading FLOAT(32)
+, 
+mag_field[0] FLOAT(32)
+, 
+mag_field[1] FLOAT(32)
+, 
+mag_field[2] FLOAT(32)
+, 
+drag[0] FLOAT(32)
+, 
+drag[1] FLOAT(32)
+, 
+airspeed FLOAT(32)
+, 
+beta FLOAT(32)
+, 
+hagl FLOAT(32)
+
+)
+CREATE TABLE Logsestimator_innovation_test_ratios (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+gps_hvel[0] FLOAT(32)
+, 
+gps_hvel[1] FLOAT(32)
+, 
+gps_vvel FLOAT(32)
+, 
+gps_hpos[0] FLOAT(32)
+, 
+gps_hpos[1] FLOAT(32)
+, 
+gps_vpos FLOAT(32)
+, 
+ev_hvel[0] FLOAT(32)
+, 
+ev_hvel[1] FLOAT(32)
+, 
+ev_vvel FLOAT(32)
+, 
+ev_hpos[0] FLOAT(32)
+, 
+ev_hpos[1] FLOAT(32)
+, 
+ev_vpos FLOAT(32)
+, 
+rng_vpos FLOAT(32)
+, 
+baro_vpos FLOAT(32)
+, 
+aux_hvel[0] FLOAT(32)
+, 
+aux_hvel[1] FLOAT(32)
+, 
+aux_vvel FLOAT(32)
+, 
+flow[0] FLOAT(32)
+, 
+flow[1] FLOAT(32)
+, 
+heading FLOAT(32)
+, 
+mag_field[0] FLOAT(32)
+, 
+mag_field[1] FLOAT(32)
+, 
+mag_field[2] FLOAT(32)
+, 
+drag[0] FLOAT(32)
+, 
+drag[1] FLOAT(32)
+, 
+airspeed FLOAT(32)
+, 
+beta FLOAT(32)
+, 
+hagl FLOAT(32)
+
+)
+CREATE TABLE Logsestimator_innovation_test_ratios (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+gps_hvel[0] FLOAT(32)
+, 
+gps_hvel[1] FLOAT(32)
+, 
+gps_vvel FLOAT(32)
+, 
+gps_hpos[0] FLOAT(32)
+, 
+gps_hpos[1] FLOAT(32)
+, 
+gps_vpos FLOAT(32)
+, 
+ev_hvel[0] FLOAT(32)
+, 
+ev_hvel[1] FLOAT(32)
+, 
+ev_vvel FLOAT(32)
+, 
+ev_hpos[0] FLOAT(32)
+, 
+ev_hpos[1] FLOAT(32)
+, 
+ev_vpos FLOAT(32)
+, 
+rng_vpos FLOAT(32)
+, 
+baro_vpos FLOAT(32)
+, 
+aux_hvel[0] FLOAT(32)
+, 
+aux_hvel[1] FLOAT(32)
+, 
+aux_vvel FLOAT(32)
+, 
+flow[0] FLOAT(32)
+, 
+flow[1] FLOAT(32)
+, 
+heading FLOAT(32)
+, 
+mag_field[0] FLOAT(32)
+, 
+mag_field[1] FLOAT(32)
+, 
+mag_field[2] FLOAT(32)
+, 
+drag[0] FLOAT(32)
+, 
+drag[1] FLOAT(32)
+, 
+airspeed FLOAT(32)
+, 
+beta FLOAT(32)
+, 
+hagl FLOAT(32)
+
+)
+CREATE TABLE Logsestimator_innovation_test_ratios (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+gps_hvel[0] FLOAT(32)
+, 
+gps_hvel[1] FLOAT(32)
+, 
+gps_vvel FLOAT(32)
+, 
+gps_hpos[0] FLOAT(32)
+, 
+gps_hpos[1] FLOAT(32)
+, 
+gps_vpos FLOAT(32)
+, 
+ev_hvel[0] FLOAT(32)
+, 
+ev_hvel[1] FLOAT(32)
+, 
+ev_vvel FLOAT(32)
+, 
+ev_hpos[0] FLOAT(32)
+, 
+ev_hpos[1] FLOAT(32)
+, 
+ev_vpos FLOAT(32)
+, 
+rng_vpos FLOAT(32)
+, 
+baro_vpos FLOAT(32)
+, 
+aux_hvel[0] FLOAT(32)
+, 
+aux_hvel[1] FLOAT(32)
+, 
+aux_vvel FLOAT(32)
+, 
+flow[0] FLOAT(32)
+, 
+flow[1] FLOAT(32)
+, 
+heading FLOAT(32)
+, 
+mag_field[0] FLOAT(32)
+, 
+mag_field[1] FLOAT(32)
+, 
+mag_field[2] FLOAT(32)
+, 
+drag[0] FLOAT(32)
+, 
+drag[1] FLOAT(32)
+, 
+airspeed FLOAT(32)
+, 
+beta FLOAT(32)
+, 
+hagl FLOAT(32)
+
+)
+CREATE TABLE Logsestimator_innovation_test_ratios (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+gps_hvel[0] FLOAT(32)
+, 
+gps_hvel[1] FLOAT(32)
+, 
+gps_vvel FLOAT(32)
+, 
+gps_hpos[0] FLOAT(32)
+, 
+gps_hpos[1] FLOAT(32)
+, 
+gps_vpos FLOAT(32)
+, 
+ev_hvel[0] FLOAT(32)
+, 
+ev_hvel[1] FLOAT(32)
+, 
+ev_vvel FLOAT(32)
+, 
+ev_hpos[0] FLOAT(32)
+, 
+ev_hpos[1] FLOAT(32)
+, 
+ev_vpos FLOAT(32)
+, 
+rng_vpos FLOAT(32)
+, 
+baro_vpos FLOAT(32)
+, 
+aux_hvel[0] FLOAT(32)
+, 
+aux_hvel[1] FLOAT(32)
+, 
+aux_vvel FLOAT(32)
+, 
+flow[0] FLOAT(32)
+, 
+flow[1] FLOAT(32)
+, 
+heading FLOAT(32)
+, 
+mag_field[0] FLOAT(32)
+, 
+mag_field[1] FLOAT(32)
+, 
+mag_field[2] FLOAT(32)
+, 
+drag[0] FLOAT(32)
+, 
+drag[1] FLOAT(32)
+, 
+airspeed FLOAT(32)
+, 
+beta FLOAT(32)
+, 
+hagl FLOAT(32)
+
+)
+CREATE TABLE Logsestimator_innovation_test_ratios (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+gps_hvel[0] FLOAT(32)
+, 
+gps_hvel[1] FLOAT(32)
+, 
+gps_vvel FLOAT(32)
+, 
+gps_hpos[0] FLOAT(32)
+, 
+gps_hpos[1] FLOAT(32)
+, 
+gps_vpos FLOAT(32)
+, 
+ev_hvel[0] FLOAT(32)
+, 
+ev_hvel[1] FLOAT(32)
+, 
+ev_vvel FLOAT(32)
+, 
+ev_hpos[0] FLOAT(32)
+, 
+ev_hpos[1] FLOAT(32)
+, 
+ev_vpos FLOAT(32)
+, 
+rng_vpos FLOAT(32)
+, 
+baro_vpos FLOAT(32)
+, 
+aux_hvel[0] FLOAT(32)
+, 
+aux_hvel[1] FLOAT(32)
+, 
+aux_vvel FLOAT(32)
+, 
+flow[0] FLOAT(32)
+, 
+flow[1] FLOAT(32)
+, 
+heading FLOAT(32)
+, 
+mag_field[0] FLOAT(32)
+, 
+mag_field[1] FLOAT(32)
+, 
+mag_field[2] FLOAT(32)
+, 
+drag[0] FLOAT(32)
+, 
+drag[1] FLOAT(32)
+, 
+airspeed FLOAT(32)
+, 
+beta FLOAT(32)
+, 
+hagl FLOAT(32)
+
+)
+CREATE TABLE Logsekf_gps_drift (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+hpos_drift_rate FLOAT(32)
+, 
+vpos_drift_rate FLOAT(32)
+, 
+hspd FLOAT(32)
+, 
+blocked BOOLEAN
+
+)
+CREATE TABLE Logsekf_gps_drift (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+hpos_drift_rate FLOAT(32)
+, 
+vpos_drift_rate FLOAT(32)
+, 
+hspd FLOAT(32)
+, 
+blocked BOOLEAN
+
+)
+CREATE TABLE Logsekf_gps_drift (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+hpos_drift_rate FLOAT(32)
+, 
+vpos_drift_rate FLOAT(32)
+, 
+hspd FLOAT(32)
+, 
+blocked BOOLEAN
+
+)
+CREATE TABLE Logsekf_gps_drift (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+hpos_drift_rate FLOAT(32)
+, 
+vpos_drift_rate FLOAT(32)
+, 
+hspd FLOAT(32)
+, 
+blocked BOOLEAN
+
+)
+CREATE TABLE Logsekf_gps_drift (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+hpos_drift_rate FLOAT(32)
+, 
+vpos_drift_rate FLOAT(32)
+, 
+hspd FLOAT(32)
+, 
+blocked BOOLEAN
+
+)
+CREATE TABLE Logsekf_gps_drift (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+hpos_drift_rate FLOAT(32)
+, 
+vpos_drift_rate FLOAT(32)
+, 
+hspd FLOAT(32)
+, 
+blocked BOOLEAN
+
+)
+CREATE TABLE Logsestimator_wind (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+windspeed_north FLOAT(32)
+, 
+windspeed_east FLOAT(32)
+, 
+variance_north FLOAT(32)
+, 
+variance_east FLOAT(32)
+, 
+tas_innov FLOAT(32)
+, 
+tas_innov_var FLOAT(32)
+, 
+beta_innov FLOAT(32)
+, 
+beta_innov_var FLOAT(32)
+
+)
+CREATE TABLE Logsestimator_wind (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+windspeed_north FLOAT(32)
+, 
+windspeed_east FLOAT(32)
+, 
+variance_north FLOAT(32)
+, 
+variance_east FLOAT(32)
+, 
+tas_innov FLOAT(32)
+, 
+tas_innov_var FLOAT(32)
+, 
+beta_innov FLOAT(32)
+, 
+beta_innov_var FLOAT(32)
+
+)
+CREATE TABLE Logsestimator_wind (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+windspeed_north FLOAT(32)
+, 
+windspeed_east FLOAT(32)
+, 
+variance_north FLOAT(32)
+, 
+variance_east FLOAT(32)
+, 
+tas_innov FLOAT(32)
+, 
+tas_innov_var FLOAT(32)
+, 
+beta_innov FLOAT(32)
+, 
+beta_innov_var FLOAT(32)
+
+)
+CREATE TABLE Logsestimator_wind (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+windspeed_north FLOAT(32)
+, 
+windspeed_east FLOAT(32)
+, 
+variance_north FLOAT(32)
+, 
+variance_east FLOAT(32)
+, 
+tas_innov FLOAT(32)
+, 
+tas_innov_var FLOAT(32)
+, 
+beta_innov FLOAT(32)
+, 
+beta_innov_var FLOAT(32)
+
+)
+CREATE TABLE Logsestimator_wind (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+windspeed_north FLOAT(32)
+, 
+windspeed_east FLOAT(32)
+, 
+variance_north FLOAT(32)
+, 
+variance_east FLOAT(32)
+, 
+tas_innov FLOAT(32)
+, 
+tas_innov_var FLOAT(32)
+, 
+beta_innov FLOAT(32)
+, 
+beta_innov_var FLOAT(32)
+
+)
+CREATE TABLE Logsestimator_wind (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+windspeed_north FLOAT(32)
+, 
+windspeed_east FLOAT(32)
+, 
+variance_north FLOAT(32)
+, 
+variance_east FLOAT(32)
+, 
+tas_innov FLOAT(32)
+, 
+tas_innov_var FLOAT(32)
+, 
+beta_innov FLOAT(32)
+, 
+beta_innov_var FLOAT(32)
+
+)
+CREATE TABLE Logsestimator_local_position (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+ref_timestamp BIGSERIAL
+, 
+ref_lat FLOAT(64)
+, 
+ref_lon FLOAT(64)
+, 
+x FLOAT(32)
+, 
+y FLOAT(32)
+, 
+z FLOAT(32)
+, 
+delta_xy[0] FLOAT(32)
+, 
+delta_xy[1] FLOAT(32)
+, 
+delta_z FLOAT(32)
+, 
+vx FLOAT(32)
+, 
+vy FLOAT(32)
+, 
+vz FLOAT(32)
+, 
+z_deriv FLOAT(32)
+, 
+delta_vxy[0] FLOAT(32)
+, 
+delta_vxy[1] FLOAT(32)
+, 
+delta_vz FLOAT(32)
+, 
+ax FLOAT(32)
+, 
+ay FLOAT(32)
+, 
+az FLOAT(32)
+, 
+heading FLOAT(32)
+, 
+delta_heading FLOAT(32)
+, 
+ref_alt FLOAT(32)
+, 
+dist_bottom FLOAT(32)
+, 
+eph FLOAT(32)
+, 
+epv FLOAT(32)
+, 
+evh FLOAT(32)
+, 
+evv FLOAT(32)
+, 
+vxy_max FLOAT(32)
+, 
+vz_max FLOAT(32)
+, 
+hagl_min FLOAT(32)
+, 
+hagl_max FLOAT(32)
+, 
+xy_valid BOOLEAN
+, 
+z_valid BOOLEAN
+, 
+v_xy_valid BOOLEAN
+, 
+v_z_valid BOOLEAN
+, 
+xy_reset_counter SMALLSERIAL
+, 
+z_reset_counter SMALLSERIAL
+, 
+vxy_reset_counter SMALLSERIAL
+, 
+vz_reset_counter SMALLSERIAL
+, 
+heading_reset_counter SMALLSERIAL
+, 
+xy_global BOOLEAN
+, 
+z_global BOOLEAN
+, 
+dist_bottom_valid BOOLEAN
+, 
+dist_bottom_sensor_bitfield SMALLSERIAL
+
+)
+CREATE TABLE Logsestimator_local_position (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+ref_timestamp BIGSERIAL
+, 
+ref_lat FLOAT(64)
+, 
+ref_lon FLOAT(64)
+, 
+x FLOAT(32)
+, 
+y FLOAT(32)
+, 
+z FLOAT(32)
+, 
+delta_xy[0] FLOAT(32)
+, 
+delta_xy[1] FLOAT(32)
+, 
+delta_z FLOAT(32)
+, 
+vx FLOAT(32)
+, 
+vy FLOAT(32)
+, 
+vz FLOAT(32)
+, 
+z_deriv FLOAT(32)
+, 
+delta_vxy[0] FLOAT(32)
+, 
+delta_vxy[1] FLOAT(32)
+, 
+delta_vz FLOAT(32)
+, 
+ax FLOAT(32)
+, 
+ay FLOAT(32)
+, 
+az FLOAT(32)
+, 
+heading FLOAT(32)
+, 
+delta_heading FLOAT(32)
+, 
+ref_alt FLOAT(32)
+, 
+dist_bottom FLOAT(32)
+, 
+eph FLOAT(32)
+, 
+epv FLOAT(32)
+, 
+evh FLOAT(32)
+, 
+evv FLOAT(32)
+, 
+vxy_max FLOAT(32)
+, 
+vz_max FLOAT(32)
+, 
+hagl_min FLOAT(32)
+, 
+hagl_max FLOAT(32)
+, 
+xy_valid BOOLEAN
+, 
+z_valid BOOLEAN
+, 
+v_xy_valid BOOLEAN
+, 
+v_z_valid BOOLEAN
+, 
+xy_reset_counter SMALLSERIAL
+, 
+z_reset_counter SMALLSERIAL
+, 
+vxy_reset_counter SMALLSERIAL
+, 
+vz_reset_counter SMALLSERIAL
+, 
+heading_reset_counter SMALLSERIAL
+, 
+xy_global BOOLEAN
+, 
+z_global BOOLEAN
+, 
+dist_bottom_valid BOOLEAN
+, 
+dist_bottom_sensor_bitfield SMALLSERIAL
+
+)
+CREATE TABLE Logsestimator_local_position (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+ref_timestamp BIGSERIAL
+, 
+ref_lat FLOAT(64)
+, 
+ref_lon FLOAT(64)
+, 
+x FLOAT(32)
+, 
+y FLOAT(32)
+, 
+z FLOAT(32)
+, 
+delta_xy[0] FLOAT(32)
+, 
+delta_xy[1] FLOAT(32)
+, 
+delta_z FLOAT(32)
+, 
+vx FLOAT(32)
+, 
+vy FLOAT(32)
+, 
+vz FLOAT(32)
+, 
+z_deriv FLOAT(32)
+, 
+delta_vxy[0] FLOAT(32)
+, 
+delta_vxy[1] FLOAT(32)
+, 
+delta_vz FLOAT(32)
+, 
+ax FLOAT(32)
+, 
+ay FLOAT(32)
+, 
+az FLOAT(32)
+, 
+heading FLOAT(32)
+, 
+delta_heading FLOAT(32)
+, 
+ref_alt FLOAT(32)
+, 
+dist_bottom FLOAT(32)
+, 
+eph FLOAT(32)
+, 
+epv FLOAT(32)
+, 
+evh FLOAT(32)
+, 
+evv FLOAT(32)
+, 
+vxy_max FLOAT(32)
+, 
+vz_max FLOAT(32)
+, 
+hagl_min FLOAT(32)
+, 
+hagl_max FLOAT(32)
+, 
+xy_valid BOOLEAN
+, 
+z_valid BOOLEAN
+, 
+v_xy_valid BOOLEAN
+, 
+v_z_valid BOOLEAN
+, 
+xy_reset_counter SMALLSERIAL
+, 
+z_reset_counter SMALLSERIAL
+, 
+vxy_reset_counter SMALLSERIAL
+, 
+vz_reset_counter SMALLSERIAL
+, 
+heading_reset_counter SMALLSERIAL
+, 
+xy_global BOOLEAN
+, 
+z_global BOOLEAN
+, 
+dist_bottom_valid BOOLEAN
+, 
+dist_bottom_sensor_bitfield SMALLSERIAL
+
+)
+CREATE TABLE Logsestimator_local_position (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+ref_timestamp BIGSERIAL
+, 
+ref_lat FLOAT(64)
+, 
+ref_lon FLOAT(64)
+, 
+x FLOAT(32)
+, 
+y FLOAT(32)
+, 
+z FLOAT(32)
+, 
+delta_xy[0] FLOAT(32)
+, 
+delta_xy[1] FLOAT(32)
+, 
+delta_z FLOAT(32)
+, 
+vx FLOAT(32)
+, 
+vy FLOAT(32)
+, 
+vz FLOAT(32)
+, 
+z_deriv FLOAT(32)
+, 
+delta_vxy[0] FLOAT(32)
+, 
+delta_vxy[1] FLOAT(32)
+, 
+delta_vz FLOAT(32)
+, 
+ax FLOAT(32)
+, 
+ay FLOAT(32)
+, 
+az FLOAT(32)
+, 
+heading FLOAT(32)
+, 
+delta_heading FLOAT(32)
+, 
+ref_alt FLOAT(32)
+, 
+dist_bottom FLOAT(32)
+, 
+eph FLOAT(32)
+, 
+epv FLOAT(32)
+, 
+evh FLOAT(32)
+, 
+evv FLOAT(32)
+, 
+vxy_max FLOAT(32)
+, 
+vz_max FLOAT(32)
+, 
+hagl_min FLOAT(32)
+, 
+hagl_max FLOAT(32)
+, 
+xy_valid BOOLEAN
+, 
+z_valid BOOLEAN
+, 
+v_xy_valid BOOLEAN
+, 
+v_z_valid BOOLEAN
+, 
+xy_reset_counter SMALLSERIAL
+, 
+z_reset_counter SMALLSERIAL
+, 
+vxy_reset_counter SMALLSERIAL
+, 
+vz_reset_counter SMALLSERIAL
+, 
+heading_reset_counter SMALLSERIAL
+, 
+xy_global BOOLEAN
+, 
+z_global BOOLEAN
+, 
+dist_bottom_valid BOOLEAN
+, 
+dist_bottom_sensor_bitfield SMALLSERIAL
+
+)
+CREATE TABLE Logsestimator_local_position (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+ref_timestamp BIGSERIAL
+, 
+ref_lat FLOAT(64)
+, 
+ref_lon FLOAT(64)
+, 
+x FLOAT(32)
+, 
+y FLOAT(32)
+, 
+z FLOAT(32)
+, 
+delta_xy[0] FLOAT(32)
+, 
+delta_xy[1] FLOAT(32)
+, 
+delta_z FLOAT(32)
+, 
+vx FLOAT(32)
+, 
+vy FLOAT(32)
+, 
+vz FLOAT(32)
+, 
+z_deriv FLOAT(32)
+, 
+delta_vxy[0] FLOAT(32)
+, 
+delta_vxy[1] FLOAT(32)
+, 
+delta_vz FLOAT(32)
+, 
+ax FLOAT(32)
+, 
+ay FLOAT(32)
+, 
+az FLOAT(32)
+, 
+heading FLOAT(32)
+, 
+delta_heading FLOAT(32)
+, 
+ref_alt FLOAT(32)
+, 
+dist_bottom FLOAT(32)
+, 
+eph FLOAT(32)
+, 
+epv FLOAT(32)
+, 
+evh FLOAT(32)
+, 
+evv FLOAT(32)
+, 
+vxy_max FLOAT(32)
+, 
+vz_max FLOAT(32)
+, 
+hagl_min FLOAT(32)
+, 
+hagl_max FLOAT(32)
+, 
+xy_valid BOOLEAN
+, 
+z_valid BOOLEAN
+, 
+v_xy_valid BOOLEAN
+, 
+v_z_valid BOOLEAN
+, 
+xy_reset_counter SMALLSERIAL
+, 
+z_reset_counter SMALLSERIAL
+, 
+vxy_reset_counter SMALLSERIAL
+, 
+vz_reset_counter SMALLSERIAL
+, 
+heading_reset_counter SMALLSERIAL
+, 
+xy_global BOOLEAN
+, 
+z_global BOOLEAN
+, 
+dist_bottom_valid BOOLEAN
+, 
+dist_bottom_sensor_bitfield SMALLSERIAL
+
+)
+CREATE TABLE Logsestimator_local_position (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+ref_timestamp BIGSERIAL
+, 
+ref_lat FLOAT(64)
+, 
+ref_lon FLOAT(64)
+, 
+x FLOAT(32)
+, 
+y FLOAT(32)
+, 
+z FLOAT(32)
+, 
+delta_xy[0] FLOAT(32)
+, 
+delta_xy[1] FLOAT(32)
+, 
+delta_z FLOAT(32)
+, 
+vx FLOAT(32)
+, 
+vy FLOAT(32)
+, 
+vz FLOAT(32)
+, 
+z_deriv FLOAT(32)
+, 
+delta_vxy[0] FLOAT(32)
+, 
+delta_vxy[1] FLOAT(32)
+, 
+delta_vz FLOAT(32)
+, 
+ax FLOAT(32)
+, 
+ay FLOAT(32)
+, 
+az FLOAT(32)
+, 
+heading FLOAT(32)
+, 
+delta_heading FLOAT(32)
+, 
+ref_alt FLOAT(32)
+, 
+dist_bottom FLOAT(32)
+, 
+eph FLOAT(32)
+, 
+epv FLOAT(32)
+, 
+evh FLOAT(32)
+, 
+evv FLOAT(32)
+, 
+vxy_max FLOAT(32)
+, 
+vz_max FLOAT(32)
+, 
+hagl_min FLOAT(32)
+, 
+hagl_max FLOAT(32)
+, 
+xy_valid BOOLEAN
+, 
+z_valid BOOLEAN
+, 
+v_xy_valid BOOLEAN
+, 
+v_z_valid BOOLEAN
+, 
+xy_reset_counter SMALLSERIAL
+, 
+z_reset_counter SMALLSERIAL
+, 
+vxy_reset_counter SMALLSERIAL
+, 
+vz_reset_counter SMALLSERIAL
+, 
+heading_reset_counter SMALLSERIAL
+, 
+xy_global BOOLEAN
+, 
+z_global BOOLEAN
+, 
+dist_bottom_valid BOOLEAN
+, 
+dist_bottom_sensor_bitfield SMALLSERIAL
+
+)
+CREATE TABLE Logsestimator_global_position (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+lat FLOAT(64)
+, 
+lon FLOAT(64)
+, 
+alt FLOAT(32)
+, 
+alt_ellipsoid FLOAT(32)
+, 
+delta_alt FLOAT(32)
+, 
+eph FLOAT(32)
+, 
+epv FLOAT(32)
+, 
+terrain_alt FLOAT(32)
+, 
+lat_lon_reset_counter SMALLSERIAL
+, 
+alt_reset_counter SMALLSERIAL
+, 
+terrain_alt_valid BOOLEAN
+, 
+dead_reckoning BOOLEAN
+
+)
+CREATE TABLE Logsestimator_global_position (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+lat FLOAT(64)
+, 
+lon FLOAT(64)
+, 
+alt FLOAT(32)
+, 
+alt_ellipsoid FLOAT(32)
+, 
+delta_alt FLOAT(32)
+, 
+eph FLOAT(32)
+, 
+epv FLOAT(32)
+, 
+terrain_alt FLOAT(32)
+, 
+lat_lon_reset_counter SMALLSERIAL
+, 
+alt_reset_counter SMALLSERIAL
+, 
+terrain_alt_valid BOOLEAN
+, 
+dead_reckoning BOOLEAN
+
+)
+CREATE TABLE Logsestimator_global_position (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+lat FLOAT(64)
+, 
+lon FLOAT(64)
+, 
+alt FLOAT(32)
+, 
+alt_ellipsoid FLOAT(32)
+, 
+delta_alt FLOAT(32)
+, 
+eph FLOAT(32)
+, 
+epv FLOAT(32)
+, 
+terrain_alt FLOAT(32)
+, 
+lat_lon_reset_counter SMALLSERIAL
+, 
+alt_reset_counter SMALLSERIAL
+, 
+terrain_alt_valid BOOLEAN
+, 
+dead_reckoning BOOLEAN
+
+)
+CREATE TABLE Logsestimator_global_position (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+lat FLOAT(64)
+, 
+lon FLOAT(64)
+, 
+alt FLOAT(32)
+, 
+alt_ellipsoid FLOAT(32)
+, 
+delta_alt FLOAT(32)
+, 
+eph FLOAT(32)
+, 
+epv FLOAT(32)
+, 
+terrain_alt FLOAT(32)
+, 
+lat_lon_reset_counter SMALLSERIAL
+, 
+alt_reset_counter SMALLSERIAL
+, 
+terrain_alt_valid BOOLEAN
+, 
+dead_reckoning BOOLEAN
+
+)
+CREATE TABLE Logsestimator_global_position (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+lat FLOAT(64)
+, 
+lon FLOAT(64)
+, 
+alt FLOAT(32)
+, 
+alt_ellipsoid FLOAT(32)
+, 
+delta_alt FLOAT(32)
+, 
+eph FLOAT(32)
+, 
+epv FLOAT(32)
+, 
+terrain_alt FLOAT(32)
+, 
+lat_lon_reset_counter SMALLSERIAL
+, 
+alt_reset_counter SMALLSERIAL
+, 
+terrain_alt_valid BOOLEAN
+, 
+dead_reckoning BOOLEAN
+
+)
+CREATE TABLE Logsestimator_global_position (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+lat FLOAT(64)
+, 
+lon FLOAT(64)
+, 
+alt FLOAT(32)
+, 
+alt_ellipsoid FLOAT(32)
+, 
+delta_alt FLOAT(32)
+, 
+eph FLOAT(32)
+, 
+epv FLOAT(32)
+, 
+terrain_alt FLOAT(32)
+, 
+lat_lon_reset_counter SMALLSERIAL
+, 
+alt_reset_counter SMALLSERIAL
+, 
+terrain_alt_valid BOOLEAN
+, 
+dead_reckoning BOOLEAN
+
+)
+CREATE TABLE Logsestimator_attitude (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+q[0] FLOAT(32)
+, 
+q[1] FLOAT(32)
+, 
+q[2] FLOAT(32)
+, 
+q[3] FLOAT(32)
+, 
+delta_q_reset[0] FLOAT(32)
+, 
+delta_q_reset[1] FLOAT(32)
+, 
+delta_q_reset[2] FLOAT(32)
+, 
+delta_q_reset[3] FLOAT(32)
+, 
+quat_reset_counter SMALLSERIAL
+
+)
+CREATE TABLE Logsestimator_attitude (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+q[0] FLOAT(32)
+, 
+q[1] FLOAT(32)
+, 
+q[2] FLOAT(32)
+, 
+q[3] FLOAT(32)
+, 
+delta_q_reset[0] FLOAT(32)
+, 
+delta_q_reset[1] FLOAT(32)
+, 
+delta_q_reset[2] FLOAT(32)
+, 
+delta_q_reset[3] FLOAT(32)
+, 
+quat_reset_counter SMALLSERIAL
+
+)
+CREATE TABLE Logsestimator_attitude (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+q[0] FLOAT(32)
+, 
+q[1] FLOAT(32)
+, 
+q[2] FLOAT(32)
+, 
+q[3] FLOAT(32)
+, 
+delta_q_reset[0] FLOAT(32)
+, 
+delta_q_reset[1] FLOAT(32)
+, 
+delta_q_reset[2] FLOAT(32)
+, 
+delta_q_reset[3] FLOAT(32)
+, 
+quat_reset_counter SMALLSERIAL
+
+)
+CREATE TABLE Logsestimator_attitude (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+q[0] FLOAT(32)
+, 
+q[1] FLOAT(32)
+, 
+q[2] FLOAT(32)
+, 
+q[3] FLOAT(32)
+, 
+delta_q_reset[0] FLOAT(32)
+, 
+delta_q_reset[1] FLOAT(32)
+, 
+delta_q_reset[2] FLOAT(32)
+, 
+delta_q_reset[3] FLOAT(32)
+, 
+quat_reset_counter SMALLSERIAL
+
+)
+CREATE TABLE Logsestimator_attitude (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+q[0] FLOAT(32)
+, 
+q[1] FLOAT(32)
+, 
+q[2] FLOAT(32)
+, 
+q[3] FLOAT(32)
+, 
+delta_q_reset[0] FLOAT(32)
+, 
+delta_q_reset[1] FLOAT(32)
+, 
+delta_q_reset[2] FLOAT(32)
+, 
+delta_q_reset[3] FLOAT(32)
+, 
+quat_reset_counter SMALLSERIAL
+
+)
+CREATE TABLE Logsestimator_attitude (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+q[0] FLOAT(32)
+, 
+q[1] FLOAT(32)
+, 
+q[2] FLOAT(32)
+, 
+q[3] FLOAT(32)
+, 
+delta_q_reset[0] FLOAT(32)
+, 
+delta_q_reset[1] FLOAT(32)
+, 
+delta_q_reset[2] FLOAT(32)
+, 
+delta_q_reset[3] FLOAT(32)
+, 
+quat_reset_counter SMALLSERIAL
+
+)
+CREATE TABLE Logsrate_ctrl_status (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+rollspeed_integ FLOAT(32)
+, 
+pitchspeed_integ FLOAT(32)
+, 
+yawspeed_integ FLOAT(32)
+, 
+additional_integ1 FLOAT(32)
+
+)
+CREATE TABLE Logsmultirotor_motor_limits (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+saturation_status SMALLSERIAL
+
+)
+CREATE TABLE Logsactuator_outputs (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+noutputs SERIAL
+, 
+output[0] FLOAT(32)
+, 
+output[1] FLOAT(32)
+, 
+output[2] FLOAT(32)
+, 
+output[3] FLOAT(32)
+, 
+output[4] FLOAT(32)
+, 
+output[5] FLOAT(32)
+, 
+output[6] FLOAT(32)
+, 
+output[7] FLOAT(32)
+, 
+output[8] FLOAT(32)
+, 
+output[9] FLOAT(32)
+, 
+output[10] FLOAT(32)
+, 
+output[11] FLOAT(32)
+, 
+output[12] FLOAT(32)
+, 
+output[13] FLOAT(32)
+, 
+output[14] FLOAT(32)
+, 
+output[15] FLOAT(32)
+
+)
+CREATE TABLE Logsvehicle_angular_acceleration (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+xyz[0] FLOAT(32)
+, 
+xyz[1] FLOAT(32)
+, 
+xyz[2] FLOAT(32)
+
+)
+CREATE TABLE Logsvtol_vehicle_status (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+mc_roll_weight FLOAT(32)
+, 
+mc_pitch_weight FLOAT(32)
+, 
+mc_yaw_weight FLOAT(32)
+, 
+mc_throttle_weight FLOAT(32)
+, 
+vtol_in_rw_mode BOOLEAN
+, 
+vtol_in_trans_mode BOOLEAN
+, 
+in_transition_to_fw BOOLEAN
+, 
+vtol_transition_failsafe BOOLEAN
+, 
+fw_permanent_stab BOOLEAN
+
+)
+CREATE TABLE Logsvehicle_status_flags (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+condition_calibration_enabled BOOLEAN
+, 
+condition_system_sensors_initialized BOOLEAN
+, 
+condition_system_hotplug_timeout BOOLEAN
+, 
+condition_system_returned_to_home BOOLEAN
+, 
+condition_auto_mission_available BOOLEAN
+, 
+condition_angular_velocity_valid BOOLEAN
+, 
+condition_attitude_valid BOOLEAN
+, 
+condition_local_altitude_valid BOOLEAN
+, 
+condition_local_position_valid BOOLEAN
+, 
+condition_local_velocity_valid BOOLEAN
+, 
+condition_global_position_valid BOOLEAN
+, 
+condition_home_position_valid BOOLEAN
+, 
+condition_power_input_valid BOOLEAN
+, 
+condition_battery_healthy BOOLEAN
+, 
+condition_escs_error BOOLEAN
+, 
+condition_escs_failure BOOLEAN
+, 
+circuit_breaker_engaged_power_check BOOLEAN
+, 
+circuit_breaker_engaged_airspd_check BOOLEAN
+, 
+circuit_breaker_engaged_enginefailure_check BOOLEAN
+, 
+circuit_breaker_flight_termination_disabled BOOLEAN
+, 
+circuit_breaker_engaged_usb_check BOOLEAN
+, 
+circuit_breaker_engaged_posfailure_check BOOLEAN
+, 
+circuit_breaker_vtol_fw_arming_check BOOLEAN
+, 
+offboard_control_signal_found_once BOOLEAN
+, 
+offboard_control_signal_lost BOOLEAN
+, 
+rc_signal_found_once BOOLEAN
+, 
+rc_input_blocked BOOLEAN
+, 
+rc_calibration_valid BOOLEAN
+, 
+vtol_transition_failure BOOLEAN
+, 
+usb_connected BOOLEAN
+, 
+sd_card_detected_once BOOLEAN
+, 
+avoidance_system_required BOOLEAN
+, 
+avoidance_system_valid BOOLEAN
+
+)
+CREATE TABLE Logsvehicle_status (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+nav_state_timestamp BIGSERIAL
+, 
+failsafe_timestamp BIGSERIAL
+, 
+armed_time BIGSERIAL
+, 
+takeoff_time BIGSERIAL
+, 
+onboard_control_sensors_present SERIAL
+, 
+onboard_control_sensors_enabled SERIAL
+, 
+onboard_control_sensors_health SERIAL
+, 
+nav_state SMALLSERIAL
+, 
+arming_state SMALLSERIAL
+, 
+hil_state SMALLSERIAL
+, 
+failsafe BOOLEAN
+, 
+system_type SMALLSERIAL
+, 
+system_id SMALLSERIAL
+, 
+component_id SMALLSERIAL
+, 
+vehicle_type SMALLSERIAL
+, 
+is_vtol BOOLEAN
+, 
+is_vtol_tailsitter BOOLEAN
+, 
+vtol_fw_permanent_stab BOOLEAN
+, 
+in_transition_mode BOOLEAN
+, 
+in_transition_to_fw BOOLEAN
+, 
+rc_signal_lost BOOLEAN
+, 
+rc_input_mode SMALLSERIAL
+, 
+data_link_lost BOOLEAN
+, 
+data_link_lost_counter SMALLSERIAL
+, 
+high_latency_data_link_lost BOOLEAN
+, 
+engine_failure BOOLEAN
+, 
+mission_failure BOOLEAN
+, 
+geofence_violated BOOLEAN
+, 
+failure_detector_status SMALLSERIAL
+, 
+latest_arming_reason SMALLSERIAL
+, 
+latest_disarming_reason SMALLSERIAL
+
+)
+CREATE TABLE Logsvehicle_magnetometer (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+device_id SERIAL
+, 
+magnetometer_ga[0] FLOAT(32)
+, 
+magnetometer_ga[1] FLOAT(32)
+, 
+magnetometer_ga[2] FLOAT(32)
+, 
+calibration_count SMALLSERIAL
+
+)
+CREATE TABLE Logsvehicle_local_position (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+ref_timestamp BIGSERIAL
+, 
+ref_lat FLOAT(64)
+, 
+ref_lon FLOAT(64)
+, 
+x FLOAT(32)
+, 
+y FLOAT(32)
+, 
+z FLOAT(32)
+, 
+delta_xy[0] FLOAT(32)
+, 
+delta_xy[1] FLOAT(32)
+, 
+delta_z FLOAT(32)
+, 
+vx FLOAT(32)
+, 
+vy FLOAT(32)
+, 
+vz FLOAT(32)
+, 
+z_deriv FLOAT(32)
+, 
+delta_vxy[0] FLOAT(32)
+, 
+delta_vxy[1] FLOAT(32)
+, 
+delta_vz FLOAT(32)
+, 
+ax FLOAT(32)
+, 
+ay FLOAT(32)
+, 
+az FLOAT(32)
+, 
+heading FLOAT(32)
+, 
+delta_heading FLOAT(32)
+, 
+ref_alt FLOAT(32)
+, 
+dist_bottom FLOAT(32)
+, 
+eph FLOAT(32)
+, 
+epv FLOAT(32)
+, 
+evh FLOAT(32)
+, 
+evv FLOAT(32)
+, 
+vxy_max FLOAT(32)
+, 
+vz_max FLOAT(32)
+, 
+hagl_min FLOAT(32)
+, 
+hagl_max FLOAT(32)
+, 
+xy_valid BOOLEAN
+, 
+z_valid BOOLEAN
+, 
+v_xy_valid BOOLEAN
+, 
+v_z_valid BOOLEAN
+, 
+xy_reset_counter SMALLSERIAL
+, 
+z_reset_counter SMALLSERIAL
+, 
+vxy_reset_counter SMALLSERIAL
+, 
+vz_reset_counter SMALLSERIAL
+, 
+heading_reset_counter SMALLSERIAL
+, 
+xy_global BOOLEAN
+, 
+z_global BOOLEAN
+, 
+dist_bottom_valid BOOLEAN
+, 
+dist_bottom_sensor_bitfield SMALLSERIAL
+
+)
+CREATE TABLE Logsvehicle_gps_position (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+time_utc_usec BIGSERIAL
+, 
+lat INTEGER
+, 
+lon INTEGER
+, 
+alt INTEGER
+, 
+alt_ellipsoid INTEGER
+, 
+s_variance_m_s FLOAT(32)
+, 
+c_variance_rad FLOAT(32)
+, 
+eph FLOAT(32)
+, 
+epv FLOAT(32)
+, 
+hdop FLOAT(32)
+, 
+vdop FLOAT(32)
+, 
+noise_per_ms INTEGER
+, 
+jamming_indicator INTEGER
+, 
+vel_m_s FLOAT(32)
+, 
+vel_n_m_s FLOAT(32)
+, 
+vel_e_m_s FLOAT(32)
+, 
+vel_d_m_s FLOAT(32)
+, 
+cog_rad FLOAT(32)
+, 
+timestamp_time_relative INTEGER
+, 
+heading FLOAT(32)
+, 
+heading_offset FLOAT(32)
+, 
+fix_type SMALLSERIAL
+, 
+jamming_state SMALLSERIAL
+, 
+vel_ned_valid BOOLEAN
+, 
+satellites_used SMALLSERIAL
+, 
+selected SMALLSERIAL
+
+)
+CREATE TABLE Logsvehicle_control_mode (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+flag_armed BOOLEAN
+, 
+flag_external_manual_override_ok BOOLEAN
+, 
+flag_multicopter_position_control_enabled BOOLEAN
+, 
+flag_control_manual_enabled BOOLEAN
+, 
+flag_control_auto_enabled BOOLEAN
+, 
+flag_control_offboard_enabled BOOLEAN
+, 
+flag_control_rates_enabled BOOLEAN
+, 
+flag_control_attitude_enabled BOOLEAN
+, 
+flag_control_acceleration_enabled BOOLEAN
+, 
+flag_control_velocity_enabled BOOLEAN
+, 
+flag_control_position_enabled BOOLEAN
+, 
+flag_control_altitude_enabled BOOLEAN
+, 
+flag_control_climb_rate_enabled BOOLEAN
+, 
+flag_control_termination_enabled BOOLEAN
+
+)
+CREATE TABLE Logsvehicle_command (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+param5 FLOAT(64)
+, 
+param6 FLOAT(64)
+, 
+param1 FLOAT(32)
+, 
+param2 FLOAT(32)
+, 
+param3 FLOAT(32)
+, 
+param4 FLOAT(32)
+, 
+param7 FLOAT(32)
+, 
+command SERIAL
+, 
+target_system SMALLSERIAL
+, 
+target_component SMALLSERIAL
+, 
+source_system SMALLSERIAL
+, 
+source_component SMALLSERIAL
+, 
+confirmation SMALLSERIAL
+, 
+from_external BOOLEAN
+
+)
+CREATE TABLE Logsvehicle_attitude_setpoint (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+roll_body FLOAT(32)
+, 
+pitch_body FLOAT(32)
+, 
+yaw_body FLOAT(32)
+, 
+yaw_sp_move_rate FLOAT(32)
+, 
+q_d[0] FLOAT(32)
+, 
+q_d[1] FLOAT(32)
+, 
+q_d[2] FLOAT(32)
+, 
+q_d[3] FLOAT(32)
+, 
+thrust_body[0] FLOAT(32)
+, 
+thrust_body[1] FLOAT(32)
+, 
+thrust_body[2] FLOAT(32)
+, 
+roll_reset_integral BOOLEAN
+, 
+pitch_reset_integral BOOLEAN
+, 
+yaw_reset_integral BOOLEAN
+, 
+fw_control_yaw BOOLEAN
+, 
+apply_flaps SMALLSERIAL
+
+)
+CREATE TABLE Logsvehicle_attitude (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+q[0] FLOAT(32)
+, 
+q[1] FLOAT(32)
+, 
+q[2] FLOAT(32)
+, 
+q[3] FLOAT(32)
+, 
+delta_q_reset[0] FLOAT(32)
+, 
+delta_q_reset[1] FLOAT(32)
+, 
+delta_q_reset[2] FLOAT(32)
+, 
+delta_q_reset[3] FLOAT(32)
+, 
+quat_reset_counter SMALLSERIAL
+
+)
+CREATE TABLE Logsvehicle_angular_velocity (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+xyz[0] FLOAT(32)
+, 
+xyz[1] FLOAT(32)
+, 
+xyz[2] FLOAT(32)
+
+)
+CREATE TABLE Logsvehicle_air_data (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+baro_device_id SERIAL
+, 
+baro_alt_meter FLOAT(32)
+, 
+baro_temp_celcius FLOAT(32)
+, 
+baro_pressure_pa FLOAT(32)
+, 
+rho FLOAT(32)
+
+)
+CREATE TABLE Logsvehicle_acceleration (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+xyz[0] FLOAT(32)
+, 
+xyz[1] FLOAT(32)
+, 
+xyz[2] FLOAT(32)
+
+)
+CREATE TABLE Logstest_motor (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+motor_number SERIAL
+, 
+value FLOAT(32)
+, 
+timeout_ms SERIAL
+, 
+action SMALLSERIAL
+, 
+driver_instance SMALLSERIAL
+
+)
+CREATE TABLE Logssensors_status_imu (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+accel_device_id_primary SERIAL
+, 
+accel_device_ids[0] SERIAL
+, 
+accel_device_ids[1] SERIAL
+, 
+accel_device_ids[2] SERIAL
+, 
+accel_device_ids[3] SERIAL
+, 
+accel_inconsistency_m_s_s[0] FLOAT(32)
+, 
+accel_inconsistency_m_s_s[1] FLOAT(32)
+, 
+accel_inconsistency_m_s_s[2] FLOAT(32)
+, 
+accel_inconsistency_m_s_s[3] FLOAT(32)
+, 
+gyro_device_id_primary SERIAL
+, 
+gyro_device_ids[0] SERIAL
+, 
+gyro_device_ids[1] SERIAL
+, 
+gyro_device_ids[2] SERIAL
+, 
+gyro_device_ids[3] SERIAL
+, 
+gyro_inconsistency_rad_s[0] FLOAT(32)
+, 
+gyro_inconsistency_rad_s[1] FLOAT(32)
+, 
+gyro_inconsistency_rad_s[2] FLOAT(32)
+, 
+gyro_inconsistency_rad_s[3] FLOAT(32)
+, 
+accel_healthy[0] BOOLEAN
+, 
+accel_healthy[1] BOOLEAN
+, 
+accel_healthy[2] BOOLEAN
+, 
+accel_healthy[3] BOOLEAN
+, 
+gyro_healthy[0] BOOLEAN
+, 
+gyro_healthy[1] BOOLEAN
+, 
+gyro_healthy[2] BOOLEAN
+, 
+gyro_healthy[3] BOOLEAN
+
+)
+CREATE TABLE Logssensor_selection (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+accel_device_id SERIAL
+, 
+gyro_device_id SERIAL
+
+)
+CREATE TABLE Logssensor_preflight_mag (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+mag_inconsistency_angle FLOAT(32)
+
+)
+CREATE TABLE Logssensor_combined (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+gyro_rad[0] FLOAT(32)
+, 
+gyro_rad[1] FLOAT(32)
+, 
+gyro_rad[2] FLOAT(32)
+, 
+gyro_integral_dt SERIAL
+, 
+accelerometer_timestamp_relative INTEGER
+, 
+accelerometer_m_s2[0] FLOAT(32)
+, 
+accelerometer_m_s2[1] FLOAT(32)
+, 
+accelerometer_m_s2[2] FLOAT(32)
+, 
+accelerometer_integral_dt SERIAL
+, 
+accelerometer_clipping SMALLSERIAL
+
+)
+CREATE TABLE Logsposition_setpoint_triplet (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+previous.timestamp BIGSERIAL
+, 
+previous.lat FLOAT(64)
+, 
+previous.lon FLOAT(64)
+, 
+previous.vx FLOAT(32)
+, 
+previous.vy FLOAT(32)
+, 
+previous.vz FLOAT(32)
+, 
+previous.alt FLOAT(32)
+, 
+previous.yaw FLOAT(32)
+, 
+previous.yawspeed FLOAT(32)
+, 
+previous.loiter_radius FLOAT(32)
+, 
+previous.acceptance_radius FLOAT(32)
+, 
+previous.cruising_speed FLOAT(32)
+, 
+previous.cruising_throttle FLOAT(32)
+, 
+previous.valid BOOLEAN
+, 
+previous.type SMALLSERIAL
+, 
+previous.velocity_valid BOOLEAN
+, 
+previous.velocity_frame SMALLSERIAL
+, 
+previous.alt_valid BOOLEAN
+, 
+previous.yaw_valid BOOLEAN
+, 
+previous.yawspeed_valid BOOLEAN
+, 
+previous.landing_gear SMALLINT
+, 
+previous.loiter_direction SMALLINT
+, 
+previous.disable_weather_vane BOOLEAN
+, 
+previous._padding0[0] SMALLSERIAL
+, 
+previous._padding0[1] SMALLSERIAL
+, 
+previous._padding0[2] SMALLSERIAL
+, 
+previous._padding0[3] SMALLSERIAL
+, 
+previous._padding0[4] SMALLSERIAL
+, 
+previous._padding0[5] SMALLSERIAL
+, 
+current.timestamp BIGSERIAL
+, 
+current.lat FLOAT(64)
+, 
+current.lon FLOAT(64)
+, 
+current.vx FLOAT(32)
+, 
+current.vy FLOAT(32)
+, 
+current.vz FLOAT(32)
+, 
+current.alt FLOAT(32)
+, 
+current.yaw FLOAT(32)
+, 
+current.yawspeed FLOAT(32)
+, 
+current.loiter_radius FLOAT(32)
+, 
+current.acceptance_radius FLOAT(32)
+, 
+current.cruising_speed FLOAT(32)
+, 
+current.cruising_throttle FLOAT(32)
+, 
+current.valid BOOLEAN
+, 
+current.type SMALLSERIAL
+, 
+current.velocity_valid BOOLEAN
+, 
+current.velocity_frame SMALLSERIAL
+, 
+current.alt_valid BOOLEAN
+, 
+current.yaw_valid BOOLEAN
+, 
+current.yawspeed_valid BOOLEAN
+, 
+current.landing_gear SMALLINT
+, 
+current.loiter_direction SMALLINT
+, 
+current.disable_weather_vane BOOLEAN
+, 
+current._padding0[0] SMALLSERIAL
+, 
+current._padding0[1] SMALLSERIAL
+, 
+current._padding0[2] SMALLSERIAL
+, 
+current._padding0[3] SMALLSERIAL
+, 
+current._padding0[4] SMALLSERIAL
+, 
+current._padding0[5] SMALLSERIAL
+, 
+next.timestamp BIGSERIAL
+, 
+next.lat FLOAT(64)
+, 
+next.lon FLOAT(64)
+, 
+next.vx FLOAT(32)
+, 
+next.vy FLOAT(32)
+, 
+next.vz FLOAT(32)
+, 
+next.alt FLOAT(32)
+, 
+next.yaw FLOAT(32)
+, 
+next.yawspeed FLOAT(32)
+, 
+next.loiter_radius FLOAT(32)
+, 
+next.acceptance_radius FLOAT(32)
+, 
+next.cruising_speed FLOAT(32)
+, 
+next.cruising_throttle FLOAT(32)
+, 
+next.valid BOOLEAN
+, 
+next.type SMALLSERIAL
+, 
+next.velocity_valid BOOLEAN
+, 
+next.velocity_frame SMALLSERIAL
+, 
+next.alt_valid BOOLEAN
+, 
+next.yaw_valid BOOLEAN
+, 
+next.yawspeed_valid BOOLEAN
+, 
+next.landing_gear SMALLINT
+, 
+next.loiter_direction SMALLINT
+, 
+next.disable_weather_vane BOOLEAN
+, 
+next._padding0[0] SMALLSERIAL
+, 
+next._padding0[1] SMALLSERIAL
+, 
+next._padding0[2] SMALLSERIAL
+, 
+next._padding0[3] SMALLSERIAL
+, 
+next._padding0[4] SMALLSERIAL
+, 
+next._padding0[5] SMALLSERIAL
+
+)
+CREATE TABLE Logsparameter_update (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+instance SERIAL
+, 
+get_count SERIAL
+, 
+set_count SERIAL
+, 
+find_count SERIAL
+, 
+export_count SERIAL
+, 
+active SMALLSERIAL
+, 
+changed SMALLSERIAL
+, 
+custom_default SMALLSERIAL
+
+)
+CREATE TABLE Logsmission (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+current_seq INTEGER
+, 
+count SMALLSERIAL
+, 
+dataman_id SMALLSERIAL
+
+)
+CREATE TABLE Logsgimbal_device_set_attitude (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+q[0] FLOAT(32)
+, 
+q[1] FLOAT(32)
+, 
+q[2] FLOAT(32)
+, 
+q[3] FLOAT(32)
+, 
+angular_velocity_x FLOAT(32)
+, 
+angular_velocity_y FLOAT(32)
+, 
+angular_velocity_z FLOAT(32)
+, 
+flags SMALLSERIAL
+, 
+target_system SMALLSERIAL
+, 
+target_component SMALLSERIAL
+
+)
+CREATE TABLE Logscommander_state (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+main_state_changes SMALLSERIAL
+, 
+main_state SMALLSERIAL
+
+)
+CREATE TABLE Logsairspeed (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+indicated_airspeed_m_s FLOAT(32)
+, 
+true_airspeed_m_s FLOAT(32)
+, 
+air_temperature_celsius FLOAT(32)
+, 
+confidence FLOAT(32)
+
+)
+CREATE TABLE Logsactuator_controls_1 (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+control[0] FLOAT(32)
+, 
+control[1] FLOAT(32)
+, 
+control[2] FLOAT(32)
+, 
+control[3] FLOAT(32)
+, 
+control[4] FLOAT(32)
+, 
+control[5] FLOAT(32)
+, 
+control[6] FLOAT(32)
+, 
+control[7] FLOAT(32)
+
+)
+CREATE TABLE Logsactuator_controls_0 (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+timestamp_sample BIGSERIAL
+, 
+control[0] FLOAT(32)
+, 
+control[1] FLOAT(32)
+, 
+control[2] FLOAT(32)
+, 
+control[3] FLOAT(32)
+, 
+control[4] FLOAT(32)
+, 
+control[5] FLOAT(32)
+, 
+control[6] FLOAT(32)
+, 
+control[7] FLOAT(32)
+
+)
+CREATE TABLE Logsactuator_armed (
+id TEXT PRIMARY KEY, 
+timestamp BIGSERIAL
+, 
+armed BOOLEAN
+, 
+prearmed BOOLEAN
+, 
+ready_to_arm BOOLEAN
+, 
+lockdown BOOLEAN
+, 
+manual_lockdown BOOLEAN
+, 
+force_failsafe BOOLEAN
+, 
+in_esc_calibration_mode BOOLEAN
+, 
+soft_stop BOOLEAN
+
+)
